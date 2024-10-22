@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinas Pemadam Kebakaran Banyuwangi</title>
+    {{-- <link rel="icon" type="image/png" href="images/logo_damkar.png"> --}}
+    {{-- <link rel="shortcut icon" type="x-icon" href="images/icon_logo_damkar.png"> --}}
+    <link rel="icon" type="x-icon" href="images/icon_logo_damkar.png">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -16,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {{-- <link href="{{ asset('public/css/style_public.css') }}" rel="stylesheet" /> --}}
-    <link rel="stylesheet" href="{{ asset ('css/style_public.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style_public.css') }}" />
 
 
 
@@ -218,7 +222,7 @@
 </head>
 
 <body>
-   @include('public.layout.header')
+    @include('public.layout.header')
     <!-- slide gambar -->
     @yield('content')
 

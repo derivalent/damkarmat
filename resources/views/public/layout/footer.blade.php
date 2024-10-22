@@ -1,14 +1,30 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-3">
+            {{-- <div class="col-md-4 mb-3">
                 <h5>Damkarmat <span style="color: #ffc107;">Banyuwangi</span></h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Berita</a></li>
                 </ul>
+            </div> --}}
+            <div class="col-md-4 mb-3">
+                <h5>
+                    {{-- <a href="{{ route('login') }}" style="text-decoration: none; color: inherit;">
+                        Damkarmat <span style="color: #ffc107;">Banyuwangi</span>
+                    </a> --}}
+                    <a href="{{ route('Login') }}" style="text-decoration: none; color: inherit;">
+                        Damkarmat <span style="color: #ffc107;">Banyuwangi</span>
+                    </a>
+                </h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Berita</a></li>
+                </ul>
             </div>
+
             <div class="col-md-4 mb-3 contact-info">
                 <p><i class="fas fa-map-marker-alt"></i><span class="ms-2">Jl. Tiga Berlian Kel. Kepatihan Kec.
                         Banyuwangi Kab. Banyuwangi</span></p>
@@ -30,7 +46,7 @@
     </div>
     <div class="bottom-bar text-center">
         <div class="container">
-            <p>Created By <span style="color: #ff4747;">CodingNepal</span> | Copyright © 2023 <span
+            <p>Created By <span style="color: #ff4747;">Sruntalsruntul</span> | Copyright © 2024 <span
                     style="color: #ffc107;">DamkarmatWangi</span> All rights reserved.</p>
         </div>
     </div>

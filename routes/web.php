@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\PublicControllerControllerController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,8 @@ Route::get('/dokumentasi_public', [PublicController::class,'dokumentasi_public']
 
 //admin
 Route::get('/dashboard_admin', [AdminController::class,'dashboard_admin']);
+
+Route::get('/login', [LoginController::class, 'index'])->name('Login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('Autentikasi');
+Route::post('/logout', [LoginController::class, 'logout'])->name('Logout');
+
