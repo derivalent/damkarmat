@@ -45,10 +45,12 @@ Route::get('/dokumentasi_public', [PublicController::class,'dokumentasi_public']
 
 // Route::get('/berita_isi_public', [BeritaController::class,'show_berita']);
 
-//admin
-Route::get('/dashboard_admin', [AdminController::class,'dashboard_admin']);
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('Login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('Autentikasi');
+Route::post('/login', [LoginController::class, 'autentikasi'])->name('Autentikasi'); // Pastikan nama metode konsisten
 Route::post('/logout', [LoginController::class, 'logout'])->name('Logout');
+
+// admin
+Route::get('/dashboard_admin', [AdminController::class, 'dashboard_admin'])->name('DashboardAdmin');
 
