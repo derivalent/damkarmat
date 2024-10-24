@@ -62,10 +62,9 @@
                                     <td>{{ $user->nip }}</td>
                                     <td>{{ $user->jabatan }}</td>
                                     <td><button class="btn btn-sm" style="background: none; border: none; color: blue;"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#userDetailModal-{{ $user->id }}">
-                                        <i class="fas fa-eye" style="font-size: 15px;"></i>
-                                    </button></td>
+                                            data-bs-toggle="modal" data-bs-target="#userDetailModal-{{ $user->id }}">
+                                            <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                        </button></td>
                                     <td style="white-space: nowrap;">
                                         <div
                                             style="display: flex; justify-content: space-around; align-items: center; gap: 4px;">
@@ -92,7 +91,7 @@
                                 </tr>
 
                                 <!-- Modal for user details -->
-                                <div class="modal fade" id="userDetailModal-{{ $user->id }}" tabindex="-1"
+                                {{-- <div class="modal fade" id="userDetailModal-{{ $user->id }}" tabindex="-1"
                                     aria-labelledby="userDetailModalLabel-{{ $user->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -152,7 +151,201 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+
+                                <div class="modal fade" id="userDetailModal-{{ $user->id }}" tabindex="-1"
+                                    aria-labelledby="userDetailModalLabel-{{ $user->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="userDetailModalLabel-{{ $user->id }}">
+                                                    <b>DETAIL PENGGUNA</b>
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{-- <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Informasi Pengguna</b>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">NIP</span>
+                                                            <span class="detail-value">: &nbsp;{{ $user->nip }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label"
+                                                                style="font-weight: bold;">Jabatan</span>
+                                                            <span class="detail-value">: &nbsp;{{ $user->jabatan }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">Jenis
+                                                                Kelamin</span>
+                                                            <span class="detail-value">:
+                                                                &nbsp;{{ $user->jenis_kelamin }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">Tempat
+                                                                Lahir</span>
+                                                            <span class="detail-value">:
+                                                                &nbsp;{{ $user->tempat_lahir }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">Tanggal
+                                                                Lahir</span>
+                                                            <span class="detail-value">:
+                                                                &nbsp;{{ \Carbon\Carbon::parse($user->tanggal_lahir)->format('d-m-Y') }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">Pendidikan
+                                                                Terakhir</span>
+                                                            <span class="detail-value">:
+                                                                &nbsp;{{ $user->pendidikan_terakhir }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label" style="font-weight: bold;">Status
+                                                                Pekerjaan</span>
+                                                            <span class="detail-value">:
+                                                                &nbsp;{{ $user->status_pekerjaan }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label"
+                                                                style="font-weight: bold;">Alamat</span>
+                                                            <span class="detail-value">: &nbsp;{{ $user->alamat }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label"
+                                                                style="font-weight: bold;">Email</span>
+                                                            <span class="detail-value">: &nbsp;{{ $user->email }}</span>
+                                                        </div>
+                                                        <div class="detail-item mb-2">
+                                                            <span class="detail-label"
+                                                                style="font-weight: bold;">Telepon</span>
+                                                            <span class="detail-value">: &nbsp;{{ $user->telepon }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                                <div class="modal-body">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <b>Informasi Pengguna</b>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">NIP</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->nip }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Jabatan</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->jabatan }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Jenis Kelamin</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->jenis_kelamin }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Tempat Lahir</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->tempat_lahir }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Tanggal Lahir</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ \Carbon\Carbon::parse($user->tanggal_lahir)->format('d-m-Y') }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Pendidikan
+                                                                        Terakhir</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->pendidikan_terakhir }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Status Pekerjaan</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->status_pekerjaan }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Alamat</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->alamat }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Email</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->email }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
+                                                                        style="font-weight: bold;">Telepon</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $user->telepon }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             @endforeach
                         </tbody>
                     </table>
