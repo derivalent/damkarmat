@@ -29,6 +29,47 @@ public function index()
     return view('admin.pelaporan.index', compact('laporans'));
 }
 
+public function button_perkejadian()
+{
+    $laporans = Pelaporan::all()->map(function ($laporan) {
+        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+        return $laporan;
+    });
+
+    return view('admin.pelaporan.button_perkejadian', compact('laporans'));
+}
+
+public function kebakaran()
+{
+    // Filter data berdasarkan jenis_kejadian 'kebakaran'
+    $laporans = Pelaporan::where('jenis_kejadian', 'kebakaran')->get()->map(function ($laporan) {
+        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+        return $laporan;
+    });
+
+    return view('admin.pelaporan.index_kebakaran', compact('laporans'));
+}
+
+
+public function penyelamatan()
+{
+    $laporans = Pelaporan::all()->map(function ($laporan) {
+        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+        return $laporan;
+    });
+
+    return view('admin.pelaporan.index_penyelamatan', compact('laporans'));
+}
+
 
     // Menampilkan form untuk menambahkan laporan baru
     public function create()

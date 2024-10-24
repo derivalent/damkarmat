@@ -69,7 +69,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::delete('personil/{personil}', [PersonilController::class, 'destroy'])->name('Personil.destroy');
 
     // pelaporan
-    Route::get('pelaporan', [PelaporanController::class, 'index'])->name('Pelaporan.index'); // Menampilkan daftar laporan
+    Route::get('pelaporan', [PelaporanController::class, 'index'])->name('Pelaporan.index'); // Menampilkan daftar laporan tanpa filter
+    Route::get('button_perkejadian', [PelaporanController::class, 'button_perkejadian'])->name('Pelaporan.button_perkejadian');
+    Route::get('kebakaran', [PelaporanController::class, 'kebakaran'])->name('Pelaporan.kebakaran');
+    Route::get('penyelamatan', [PelaporanController::class, 'penyelamatan'])->name('Pelaporan.penyelamatan');
     Route::get('pelaporan/create', [PelaporanController::class, 'create'])->name('Pelaporan.create'); // Form untuk membuat laporan
     Route::post('pelaporan', [PelaporanController::class, 'store'])->name('Pelaporan.store'); // Menyimpan laporan baru
     Route::get('pelaporan/{id}/edit', [PelaporanController::class, 'edit'])->name('Pelaporan.edit'); // Form untuk mengedit laporan
