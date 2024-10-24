@@ -165,68 +165,6 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                {{-- <div class="card">
-                                                    <div class="card-header">
-                                                        <b>Informasi Pengguna</b>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">NIP</span>
-                                                            <span class="detail-value">: &nbsp;{{ $user->nip }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label"
-                                                                style="font-weight: bold;">Jabatan</span>
-                                                            <span class="detail-value">: &nbsp;{{ $user->jabatan }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">Jenis
-                                                                Kelamin</span>
-                                                            <span class="detail-value">:
-                                                                &nbsp;{{ $user->jenis_kelamin }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">Tempat
-                                                                Lahir</span>
-                                                            <span class="detail-value">:
-                                                                &nbsp;{{ $user->tempat_lahir }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">Tanggal
-                                                                Lahir</span>
-                                                            <span class="detail-value">:
-                                                                &nbsp;{{ \Carbon\Carbon::parse($user->tanggal_lahir)->format('d-m-Y') }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">Pendidikan
-                                                                Terakhir</span>
-                                                            <span class="detail-value">:
-                                                                &nbsp;{{ $user->pendidikan_terakhir }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label" style="font-weight: bold;">Status
-                                                                Pekerjaan</span>
-                                                            <span class="detail-value">:
-                                                                &nbsp;{{ $user->status_pekerjaan }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label"
-                                                                style="font-weight: bold;">Alamat</span>
-                                                            <span class="detail-value">: &nbsp;{{ $user->alamat }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label"
-                                                                style="font-weight: bold;">Email</span>
-                                                            <span class="detail-value">: &nbsp;{{ $user->email }}</span>
-                                                        </div>
-                                                        <div class="detail-item mb-2">
-                                                            <span class="detail-label"
-                                                                style="font-weight: bold;">Telepon</span>
-                                                            <span class="detail-value">: &nbsp;{{ $user->telepon }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                                 <div class="modal-body">
                                                     <div class="card">
                                                         <div class="card-header">
@@ -280,7 +218,7 @@
                                                                 </div>
                                                                 <div class="col-8">
                                                                     <span class="detail-value">:
-                                                                        &nbsp;{{ \Carbon\Carbon::parse($user->tanggal_lahir)->format('d-m-Y') }}</span>
+                                                                        &nbsp;{{ \Carbon\Carbon::parse($user->tanggal_lahir)->translatedFormat('d F Y') }}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-2">

@@ -48,8 +48,8 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('Pelaporan.index') }}">Kejadian Kebakaran</a>
-                        <a class="nav-link" href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan Pelaporan</a>
+                        <a class="nav-link" href="{{ route('Pelaporan.index') }}">Seluruh Data Kejadian Kebakaran</a>
+                        <a class="nav-link" href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan Pelaporan per Jenis</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">User Management</div>

@@ -1,259 +1,14 @@
-{{-- @extends('admin.layout.main')
-
-@section('content')
-<main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4"><b>TAMBAH PELAPORAN</b></h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('Pelaporan.index') }}">Daftar Pelaporan</a></li>
-            <li class="breadcrumb-item active">Tambah Pelaporan</li>
-        </ol>
-
-        <div class="card mb-4">
-            <div class="card-header">
-                <b>Form Tambah Pelaporan</b>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('Pelaporan.store') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="kejadian" class="form-label">Kejadian</label>
-                        <input type="text" name="kejadian" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="jenis_kejadian" class="form-label">Jenis Kejadian</label>
-                        <select name="jenis_kejadian" class="form-select" required>
-                            <option value="kebakaran">Kebakaran</option>
-                            <option value="penyelamatan">Penyelamatan</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="hari_kejadian" class="form-label">Hari Kejadian</label>
-                        <input type="date" name="hari_kejadian" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="laporan_masuk" class="form-label">Laporan Masuk</label>
-                        <input type="time" name="laporan_masuk" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="berangkat" class="form-label">Berangkat</label>
-                        <input type="time" name="berangkat" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tiba" class="form-label">Tiba</label>
-                        <input type="time" name="tiba" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="selesai" class="form-label">Selesai</label>
-                        <input type="time" name="selesai" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lokasi" class="form-label">Lokasi</label>
-                        <input type="text" name="lokasi" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="pelapor" class="form-label">Pelapor</label>
-                        <input type="text" name="pelapor" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="pemilik" class="form-label">Pemilik</label>
-                        <input type="text" name="pemilik" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="penyebab" class="form-label">Penyebab</label>
-                        <input type="text" name="penyebab" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="kerugian" class="form-label">Kerugian</label>
-                        <input type="text" name="kerugian" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="korban" class="form-label">Korban</label>
-                        <input type="text" name="korban" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="kendala" class="form-label">Kendala</label>
-                        <input type="text" name="kendala" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="personil" class="form-label">Personil</label>
-                        <select name="personil[]" class="form-select" multiple required>
-                            @foreach ($personil as $p)
-                                <option value="{{ $p->id }}">{{ $p->personil }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="mobil_dinas" class="form-label">Mobil Dinas</label>
-                        <input type="text" name="mobil_dinas" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</main>
-@endsection --}}
-
-{{-- @extends('layouts.admin.main')
-
-@section('content')
-<div class="container">
-    <h1>Daftar Pelaporan</h1>
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    <a href="{{ route('Pelaporan.create') }}" class="btn btn-primary mb-3">Tambah Laporan</a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Kejadian</th>
-                <th>Jenis Kejadian</th>
-                <th>Hari Kejadian</th>
-                <th>Laporan Masuk</th>
-                <th>Berangkat</th>
-                <th>Tiba</th>
-                <th>Selesai</th>
-                <th>Lokasi</th>
-                <th>Pelapor</th>
-                <th>Pemilik</th>
-                <th>Penyebab</th>
-                <th>Kerugian</th>
-                <th>Korban</th>
-                <th>Kendala</th>
-                <th>Mobil Dinas</th>
-                <th>Personil</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($laporans as $laporan)
-                <tr>
-                    <td>{{ $laporan->kejadian }}</td>
-                    <td>{{ $laporan->jenis_kejadian }}</td>
-                    <td>{{ $laporan->hari_kejadian }}</td>
-                    <td>{{ $laporan->laporan_masuk }}</td>
-                    <td>{{ $laporan->berangkat }}</td>
-                    <td>{{ $laporan->tiba }}</td>
-                    <td>{{ $laporan->selesai }}</td>
-                    <td>{{ $laporan->lokasi }}</td>
-                    <td>{{ $laporan->pelapor }}</td>
-                    <td>{{ $laporan->pemilik }}</td>
-                    <td>{{ $laporan->penyebab }}</td>
-                    <td>{{ $laporan->kerugian }}</td>
-                    <td>{{ $laporan->korban }}</td>
-                    <td>{{ $laporan->kendala }}</td>
-                    <td>{{ $laporan->mobil_dinas }}</td>
-                    <td>
-                        @if (is_array($laporan->personil))
-                            {{ implode(', ', $laporan->personil) }}
-                        @else
-                            {{ $laporan->personil }}
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{ route('Pelaporan.edit', $laporan->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('Pelaporan.destroy', $laporan->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus laporan ini?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{ $laporans->links() }}
-</div>
-@endsection --}}
-
-{{-- @extends('admin.layout.main')
-
-@section('content')
-<div class="container">
-    <h1>Daftar Pelaporan</h1>
-
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <a href="{{ route('Pelaporan.create') }}" class="btn btn-primary mb-3">Tambah Laporan</a>
-
-    <table class="table table-striped table-bordered" id="datatablesSimple">
-        <thead>
-            <tr>
-                <th>Kejadian</th>
-                <th>Jenis Kejadian</th>
-                <th>Hari Kejadian</th>
-                <th>Laporan Masuk</th>
-                <th>Berangkat</th>
-                <th>Tiba</th>
-                <th>Selesai</th>
-                <th>Lokasi</th>
-                <th>Pelapor</th>
-                <th>Pemilik</th>
-                <th>Penyebab</th>
-                <th>Kerugian</th>
-                <th>Korban</th>
-                <th>Kendala</th>
-                <th>Mobil Dinas</th>
-                <th>Personil</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($laporans as $laporan)
-                <tr>
-                    <td>{{ $laporan->kejadian }}</td>
-                    <td>{{ $laporan->jenis_kejadian }}</td>
-                    <td>{{ $laporan->hari_kejadian }}</td>
-                    <td>{{ $laporan->laporan_masuk }}</td>
-                    <td>{{ $laporan->berangkat }}</td>
-                    <td>{{ $laporan->tiba }}</td>
-                    <td>{{ $laporan->selesai }}</td>
-                    <td>{{ $laporan->lokasi }}</td>
-                    <td>{{ $laporan->pelapor }}</td>
-                    <td>{{ $laporan->pemilik }}</td>
-                    <td>{{ $laporan->penyebab }}</td>
-                    <td>{{ $laporan->kerugian }}</td>
-                    <td>{{ $laporan->korban }}</td>
-                    <td>{{ $laporan->kendala }}</td>
-                    <td>{{ $laporan->mobil_dinas }}</td>
-                    <td>
-                        @if (is_array($laporan->personil))
-                            {{ implode(', ', $laporan->personil) }}
-                        @else
-                            {{ $laporan->personil }}
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{ route('Pelaporan.edit', $laporan->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('Pelaporan.destroy', $laporan->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus laporan ini?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-
-</div>
-
-@endsection --}}
-
 @extends('admin.layout.main')
 
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h3 class="mt-4"><b>DAFTAR PELAPORAN</b></h3>
+            <h3 class="mt-4"><b>DATA SELURUH PENANGANAN KEJADIAN</b></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active">Daftar Pelaporan</li>
+                <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan
+                        Pelaporan</a></li>
+                <li class="breadcrumb-item active">Data Seluruh Penanganan Kejadian</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">
@@ -283,18 +38,7 @@
                                 <th>Jenis Kejadian</th>
                                 <th>Hari Kejadian</th>
                                 <th>Laporan Masuk</th>
-                                <th>Berangkat</th>
-                                <th>Tiba</th>
-                                <th>Selesai</th>
-                                <th>Lokasi</th>
-                                <th>Pelapor</th>
-                                <th>Pemilik</th>
-                                <th>Penyebab</th>
-                                <th>Kerugian</th>
-                                <th>Korban</th>
-                                <th>Kendala</th>
-                                <th>Mobil Dinas</th>
-                                <th>Personil</th>
+                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -304,41 +48,22 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $laporan->kejadian }}</td>
                                     <td>{{ $laporan->jenis_kejadian }}</td>
-                                    <td>{{ $laporan->hari_kejadian }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</td>
                                     <td>{{ $laporan->laporan_masuk }}</td>
-                                    <td>{{ $laporan->berangkat }}</td>
-                                    <td>{{ $laporan->tiba }}</td>
-                                    <td>{{ $laporan->selesai }}</td>
-                                    <td>{{ $laporan->lokasi }}</td>
-                                    <td>{{ $laporan->pelapor }}</td>
-                                    <td>{{ $laporan->pemilik }}</td>
-                                    <td>{{ $laporan->penyebab }}</td>
-                                    <td>{{ $laporan->kerugian }}</td>
-                                    <td>{{ $laporan->korban }}</td>
-                                    <td>{{ $laporan->kendala }}</td>
-                                    <td>{{ $laporan->mobil_dinas }}</td>
-                                    {{-- <td>
-                                        @if (is_array($laporan->personil))
-                                            {{ implode(', ', $laporan->personil) }}
-                                        @else
-                                            {{ $laporan->personil }}
-                                        @endif
-                                    </td> --}}
                                     <td>
-                                        @php
-                                            $personilDecoded = json_decode($laporan->personil);
-                                        @endphp
-                                        @if (is_array($personilDecoded))
-                                            {{ implode(', ', $personilDecoded) }}
-                                        @else
-                                            {{ $laporan->personil }}
-                                        @endif
+                                        <button class="btn btn-sm" style="background: none; border: none; color: blue;" data-bs-toggle="modal"
+                                            data-bs-target="#laporanDetailModal-{{ $laporan->id }}">
+                                            <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                        </button>
                                     </td>
-
-
                                     <td style="white-space: nowrap;">
                                         <div
                                             style="display: flex; justify-content: space-around; align-items: center; gap: 4px;">
+                                            <!-- Eye icon to trigger modal -->
+                                            {{-- <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#laporanDetailModal-{{ $laporan->id }}">
+                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                            </button> --}}
                                             <a class="btn btn-warning btn-sm"
                                                 href="{{ route('Pelaporan.edit', $laporan->id) }}">
                                                 <i class="fas fa-edit" style="font-size: 15px;"></i>
@@ -355,8 +80,9 @@
                                         </div>
                                     </td>
                                 </tr>
+
                                 <!-- Modal for laporan details -->
-                                <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
+                                {{-- <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
                                     aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -378,6 +104,24 @@
                                                     <span class="detail-value">:
                                                         &nbsp;{{ $laporan->jenis_kejadian }}</span>
                                                 </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label" style="font-weight: bold;">Hari
+                                                        Kejadian</span>
+                                                    <span class="detail-value">: &nbsp;{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</span>
+                                                </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label" style="font-weight: bold;">Laporan
+                                                        Masuk</span>
+                                                    <span class="detail-value">: &nbsp;{{ $laporan->laporan_masuk }}</span>
+                                                </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label" style="font-weight: bold;">Berangkat</span>
+                                                    <span class="detail-value">: &nbsp;{{ $laporan->berangkat }}</span>
+                                                </div>
+                                                <div class="detail-item">
+                                                    <span class="detail-label" style="font-weight: bold;">Tiba</span>
+                                                    <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
+                                                </div>
                                                 <!-- Add more detail items as needed -->
                                             </div>
                                             <div class="modal-footer">
@@ -386,7 +130,82 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div> --}}
+                                <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
+                                    aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="laporanDetailModalLabel-{{ $laporan->id }}">
+                                                    <b>DETAIL LAPORAN</b>
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Informasi Laporan</b>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Jenis Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->jenis_kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Hari Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Laporan Masuk</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->laporan_masuk }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Berangkat</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->berangkat }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Tiba</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Add more detail items as needed -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             @endforeach
                         </tbody>
                     </table>

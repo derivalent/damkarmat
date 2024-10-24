@@ -5,7 +5,7 @@
             <h1 class="mt-4"><b>LAPORAN KEJADIAN</b></h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Laporan Kejadian</li>
+                <li class="breadcrumb-item active">Tambah Data Laporan Kejadian dan Penanganan</li>
             </ol>
             <div class="row">
                 <div class="col-xl-4 col-md-6">

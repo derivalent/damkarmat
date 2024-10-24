@@ -59,7 +59,8 @@ public function kebakaran()
 
 public function penyelamatan()
 {
-    $laporans = Pelaporan::all()->map(function ($laporan) {
+    // Filter data berdasarkan jenis_kejadian 'kebakaran'
+    $laporans = Pelaporan::where('jenis_kejadian', 'penyelamatan')->get()->map(function ($laporan) {
         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');

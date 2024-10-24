@@ -3,10 +3,11 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h3 class="mt-4"><b>DAFTAR PELAPORAN</b></h3>
+            <h3 class="mt-4"><b>DATA PENANGANAN PENYELAMATAN</b></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active">Daftar Pelaporan</li>
+                <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan Pelaporan</a></li>
+                <li class="breadcrumb-item active">Penanganan Penyelamatan</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-header">
@@ -36,18 +37,7 @@
                                 <th>Jenis Kejadian</th>
                                 <th>Hari Kejadian</th>
                                 <th>Laporan Masuk</th>
-                                <th>Berangkat</th>
-                                <th>Tiba</th>
-                                <th>Selesai</th>
-                                <th>Lokasi</th>
-                                <th>Pelapor</th>
-                                <th>Pemilik</th>
-                                <th>Penyebab</th>
-                                <th>Kerugian</th>
-                                <th>Korban</th>
-                                <th>Kendala</th>
-                                <th>Mobil Dinas</th>
-                                <th>Personil</th>
+                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -57,47 +47,25 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $laporan->kejadian }}</td>
                                     <td>{{ $laporan->jenis_kejadian }}</td>
-                                    <td>{{ $laporan->hari_kejadian }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</td>
                                     <td>{{ $laporan->laporan_masuk }}</td>
-                                    <td>{{ $laporan->berangkat }}</td>
-                                    <td>{{ $laporan->tiba }}</td>
-                                    <td>{{ $laporan->selesai }}</td>
-                                    <td>{{ $laporan->lokasi }}</td>
-                                    <td>{{ $laporan->pelapor }}</td>
-                                    <td>{{ $laporan->pemilik }}</td>
-                                    <td>{{ $laporan->penyebab }}</td>
-                                    <td>{{ $laporan->kerugian }}</td>
-                                    <td>{{ $laporan->korban }}</td>
-                                    <td>{{ $laporan->kendala }}</td>
-                                    <td>{{ $laporan->mobil_dinas }}</td>
-                                    {{-- <td>
-                                        @if (is_array($laporan->personil))
-                                            {{ implode(', ', $laporan->personil) }}
-                                        @else
-                                            {{ $laporan->personil }}
-                                        @endif
-                                    </td> --}}
                                     <td>
-                                        @php
-                                            $personilDecoded = json_decode($laporan->personil);
-                                        @endphp
-                                        @if (is_array($personilDecoded))
-                                            {{ implode(', ', $personilDecoded) }}
-                                        @else
-                                            {{ $laporan->personil }}
-                                        @endif
+                                        <button class="btn btn-sm" style="background: none; border: none; color: blue;" data-bs-toggle="modal"
+                                            data-bs-target="#laporanDetailModal-{{ $laporan->id }}">
+                                            <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                        </button>
                                     </td>
-
-
                                     <td style="white-space: nowrap;">
-                                        <div
-                                            style="display: flex; justify-content: space-around; align-items: center; gap: 4px;">
-                                            <a class="btn btn-warning btn-sm"
-                                                href="{{ route('Pelaporan.edit', $laporan->id) }}">
+                                        <div style="display: flex; justify-content: space-around; align-items: center; gap: 4px;">
+                                            <!-- Eye icon to trigger modal -->
+                                            {{-- <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#laporanDetailModal-{{ $laporan->id }}">
+                                                <i class="fas fa-eye" style="font-size: 15px;"></i>
+                                            </button> --}}
+                                            <a class="btn btn-warning btn-sm" href="{{ route('Pelaporan.edit', $laporan->id) }}">
                                                 <i class="fas fa-edit" style="font-size: 15px;"></i>
                                             </a>
-                                            <form action="{{ route('Pelaporan.destroy', $laporan->id) }}" method="POST"
-                                                style="display:inline;">
+                                            <form action="{{ route('Pelaporan.destroy', $laporan->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"
@@ -108,6 +76,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                                 <!-- Modal for laporan details -->
                                 <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
                                     aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
@@ -117,25 +86,68 @@
                                                 <h5 class="modal-title" id="laporanDetailModalLabel-{{ $laporan->id }}">
                                                     <b>DETAIL LAPORAN</b>
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="detail-item">
-                                                    <span class="detail-label" style="font-weight: bold;">Kejadian</span>
-                                                    <span class="detail-value">: &nbsp;{{ $laporan->kejadian }}</span>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Informasi Laporan</b>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Jenis Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->jenis_kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Hari Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Laporan Masuk</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->laporan_masuk }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Berangkat</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->berangkat }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Tiba</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Add more detail items as needed -->
+                                                    </div>
                                                 </div>
-                                                <div class="detail-item">
-                                                    <span class="detail-label" style="font-weight: bold;">Jenis
-                                                        Kejadian</span>
-                                                    <span class="detail-value">:
-                                                        &nbsp;{{ $laporan->jenis_kejadian }}</span>
-                                                </div>
-                                                <!-- Add more detail items as needed -->
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                             </div>
                                         </div>
                                     </div>

@@ -339,9 +339,9 @@
                     </div>
 
                     <div class="form-group row mb-3">
-                        <div class="col-sm-10 offset-sm-2">
+                        <div class="text-center">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <a href="{{ route('Pelaporan.index') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('Pelaporan.button_perkejadian') }}" class="btn btn-secondary">Batal</a>
                         </div>
                     </div>
                 </form>

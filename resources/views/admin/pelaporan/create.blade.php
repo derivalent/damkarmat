@@ -145,7 +145,12 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    {{-- <button type="submit" class="btn btn-primary">Simpan</button> --}}
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{ route('Pelaporan.button_perkejadian') }}" class="btn btn-secondary">Kembali</a>
+                    </div>
                 </form>
             </div>
         </div>
