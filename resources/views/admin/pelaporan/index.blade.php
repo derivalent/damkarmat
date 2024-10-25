@@ -451,9 +451,13 @@
                                                             <div class="col-4">
                                                                 <span class="detail-label" style="font-weight: bold;">Personil</span>
                                                             </div>
-                                                            <div class="col-8">
+                                                            {{-- <div class="col-8">
                                                                 <span class="detail-value">: &nbsp;{{ $laporan->personil }}</span>
+                                                            </div> --}}
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ implode(', ', json_decode($laporan->personil, true)) }}</span>
                                                             </div>
+
                                                         </div>
 
                                                         <!-- Display Dokumentasi Image -->

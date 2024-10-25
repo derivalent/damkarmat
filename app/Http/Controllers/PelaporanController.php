@@ -433,7 +433,43 @@ class PelaporanController extends Controller
         return view('admin.pelaporan.filterPrint', compact('tahun'));
     }
 
-    // Metode untuk melakukan print pelaporan
+    // Metode untuk melakukan print pelaporan tapi gak bisa landscape
+    // public function print(Request $request)
+    // {
+    //     // Capture the selected month, year, and jenis kejadian from the request
+    //     $month = $request->get('month');
+    //     $year = $request->get('year');
+    //     $jenisKeadaan = $request->get('jenis_keadaan');
+
+    //     // Filter Pelaporan based on month, year, and jenis kejadian if they are provided
+    //     $query = Pelaporan::query();
+
+    //     if ($month) {
+    //         $query->whereMonth('created_at', $month);
+    //     }
+
+    //     if ($year) {
+    //         $query->whereYear('created_at', $year);
+    //     }
+
+    //     if ($jenisKeadaan) {
+    //         $query->where('jenis_kejadian', $jenisKeadaan); // Sesuaikan dengan kolom di database Anda
+    //     }
+
+    //     // Get the filtered data
+    //     $laporans = $query->get()->map(function ($laporan) {
+    //         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+    //         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+    //         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+    //         $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+    //         return $laporan;
+    //     });
+
+    //     // Generate PDF
+    //     $pdf = PDF::loadView('admin.pelaporan.print', compact('laporans', 'month', 'year', 'jenisKeadaan'));
+    //     return $pdf->download('laporan.pdf');
+    // }
+
     public function print(Request $request)
     {
         // Capture the selected month, year, and jenis kejadian from the request
@@ -453,10 +489,10 @@ class PelaporanController extends Controller
         }
 
         if ($jenisKeadaan) {
-            $query->where('jenis_kejadian', $jenisKeadaan); // Sesuaikan dengan kolom di database Anda
+            $query->where('jenis_kejadian', $jenisKeadaan);
         }
 
-        // Get the filtered data
+        // Get the filtered data and format time fields
         $laporans = $query->get()->map(function ($laporan) {
             $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
             $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
@@ -465,8 +501,10 @@ class PelaporanController extends Controller
             return $laporan;
         });
 
-        // Generate PDF
-        $pdf = PDF::loadView('admin.pelaporan.print', compact('laporans', 'month', 'year', 'jenisKeadaan'));
+        // Generate PDF with landscape orientation
+        $pdf = PDF::loadView('admin.pelaporan.print', compact('laporans', 'month', 'year', 'jenisKeadaan'))
+            ->setPaper('a2', 'landscape'); // Set to landscape orientation
+
         return $pdf->download('laporan.pdf');
     }
 }
