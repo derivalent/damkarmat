@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\PelaporanController;
+use App\Http\Controllers\TahunController;
 
 
 /*
@@ -58,6 +59,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('Logout');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // dashboard admin
     Route::get('/dashboard_admin', [AdminController::class, 'dashboard_admin'])->name('DashboardAdmin');
+    Route::get('tahun', [TahunController::class, 'tahun'])->name('Tahun.index'); // Display list of years
+    Route::get('tahun/create', [TahunController::class, 'create'])->name('Tahun.create'); // Show form to create a new year
+    Route::post('tahun', [TahunController::class, 'store'])->name('Tahun.store'); // Store a new year
+    Route::get('tahun/{tahun}/edit', [TahunController::class, 'edit'])->name('Tahun.edit'); // Show form to edit an existing year
+    Route::put('tahun/{tahun}', [TahunController::class, 'update'])->name('Tahun.update'); // Update an existing year
+    Route::delete('tahun/{tahun}', [TahunController::class, 'destroy'])->name('Tahun.destroy'); // Delete a year
     // Route::get('/personil', [AdminController::class, 'personil'])->name('Personil'); //button untuk mengakses view kelola personil
 
     // kelola personil

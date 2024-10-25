@@ -16,60 +16,60 @@ class PelaporanController extends Controller
     //     return view('admin.pelaporan.index', compact('laporans'));
     // }
     // Assuming you are fetching the laporan data in a method
-public function index()
-{
-    $laporans = Pelaporan::all()->map(function ($laporan) {
-        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
-        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
-        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
-        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
-        return $laporan;
-    });
+    public function index()
+    {
+        $laporans = Pelaporan::all()->map(function ($laporan) {
+            $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+            $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+            $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+            $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+            return $laporan;
+        });
 
-    return view('admin.pelaporan.index', compact('laporans'));
-}
+        return view('admin.pelaporan.index', compact('laporans'));
+    }
 
-public function button_perkejadian()
-{
-    $laporans = Pelaporan::all()->map(function ($laporan) {
-        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
-        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
-        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
-        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
-        return $laporan;
-    });
+    public function button_perkejadian()
+    {
+        $laporans = Pelaporan::all()->map(function ($laporan) {
+            $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+            $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+            $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+            $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+            return $laporan;
+        });
 
-    return view('admin.pelaporan.button_perkejadian', compact('laporans'));
-}
+        return view('admin.pelaporan.button_perkejadian', compact('laporans'));
+    }
 
-public function kebakaran()
-{
-    // Filter data berdasarkan jenis_kejadian 'kebakaran'
-    $laporans = Pelaporan::where('jenis_kejadian', 'kebakaran')->get()->map(function ($laporan) {
-        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
-        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
-        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
-        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
-        return $laporan;
-    });
+    public function kebakaran()
+    {
+        // Filter data berdasarkan jenis_kejadian 'kebakaran'
+        $laporans = Pelaporan::where('jenis_kejadian', 'kebakaran')->get()->map(function ($laporan) {
+            $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+            $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+            $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+            $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+            return $laporan;
+        });
 
-    return view('admin.pelaporan.index_kebakaran', compact('laporans'));
-}
+        return view('admin.pelaporan.index_kebakaran', compact('laporans'));
+    }
 
 
-public function penyelamatan()
-{
-    // Filter data berdasarkan jenis_kejadian 'kebakaran'
-    $laporans = Pelaporan::where('jenis_kejadian', 'penyelamatan')->get()->map(function ($laporan) {
-        $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
-        $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
-        $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
-        $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
-        return $laporan;
-    });
+    public function penyelamatan()
+    {
+        // Filter data berdasarkan jenis_kejadian 'kebakaran'
+        $laporans = Pelaporan::where('jenis_kejadian', 'penyelamatan')->get()->map(function ($laporan) {
+            $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+            $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+            $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+            $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+            return $laporan;
+        });
 
-    return view('admin.pelaporan.index_penyelamatan', compact('laporans'));
-}
+        return view('admin.pelaporan.index_penyelamatan', compact('laporans'));
+    }
 
 
     // Menampilkan form untuk menambahkan laporan baru
@@ -80,6 +80,51 @@ public function penyelamatan()
     }
 
     // Menyimpan laporan baru
+    // public function store(Request $request)
+    // {
+    //     // Validasi input
+    //     $request->validate([
+    //         'kejadian' => 'required|string|max:255',
+    //         'jenis_kejadian' => 'required|in:kebakaran,penyelamatan',
+    //         'hari_kejadian' => 'required|date',
+    //         'laporan_masuk' => 'required|date_format:H:i', // Format waktu
+    //         'berangkat' => 'required|date_format:H:i',
+    //         'tiba' => 'required|date_format:H:i',
+    //         'selesai' => 'required|date_format:H:i',
+    //         'lokasi' => 'nullable|string|max:255',
+    //         'pelapor' => 'nullable|string|max:255',
+    //         'pemilik' => 'nullable|string|max:255',
+    //         'penyebab' => 'nullable|string',
+    //         'kerugian' => 'nullable|string',
+    //         'korban' => 'nullable|string',
+    //         'kendala' => 'nullable|string',
+    //         'mobil_dinas' => 'nullable|string|max:255',
+    //         'personil' => 'required|array', // Pastikan personil diisi
+    //     ]);
+
+    //     // Menyimpan data laporan
+    //     Pelaporan::create([
+    //         'kejadian' => $request->kejadian,
+    //         'jenis_kejadian' => $request->jenis_kejadian,
+    //         'hari_kejadian' => $request->hari_kejadian,
+    //         'laporan_masuk' => $request->laporan_masuk,
+    //         'berangkat' => $request->berangkat,
+    //         'tiba' => $request->tiba,
+    //         'selesai' => $request->selesai,
+    //         'lokasi' => $request->lokasi,
+    //         'pelapor' => $request->pelapor,
+    //         'pemilik' => $request->pemilik,
+    //         'penyebab' => $request->penyebab,
+    //         'kerugian' => $request->kerugian,
+    //         'korban' => $request->korban,
+    //         'kendala' => $request->kendala,
+    //         'mobil_dinas' => $request->mobil_dinas,
+    //         'personil' => json_encode($request->personil), // Menyimpan sebagai JSON
+    //     ]);
+
+    //     return redirect()->route('Pelaporan.index')->with('success', 'Laporan berhasil ditambahkan.');
+    // }
+
     public function store(Request $request)
     {
         // Validasi input
@@ -100,10 +145,12 @@ public function penyelamatan()
             'kendala' => 'nullable|string',
             'mobil_dinas' => 'nullable|string|max:255',
             'personil' => 'required|array', // Pastikan personil diisi
+            'dokumentasi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar dokumentasi
+            'data_diri' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar data diri
         ]);
 
         // Menyimpan data laporan
-        Pelaporan::create([
+        $laporan = Pelaporan::create([
             'kejadian' => $request->kejadian,
             'jenis_kejadian' => $request->jenis_kejadian,
             'hari_kejadian' => $request->hari_kejadian,
@@ -119,19 +166,27 @@ public function penyelamatan()
             'korban' => $request->korban,
             'kendala' => $request->kendala,
             'mobil_dinas' => $request->mobil_dinas,
-            'personil' => json_encode($request->personil), // Menyimpan sebagai JSON
+            'personil' => json_encode($request->personil), // Encode to JSON for storage
         ]);
 
-        return redirect()->route('Pelaporan.index')->with('success', 'Laporan berhasil ditambahkan.');
-    }
+        // Menyimpan gambar dokumentasi
+        if ($request->hasFile('dokumentasi')) {
+            $file = $request->file('dokumentasi');
+            $path = $file->store('uploads/dokumentasi', 'public'); // Store in public/uploads/dokumentasi
+            $laporan->dokumentasi = $path;
+        }
 
-    // Menampilkan form untuk mengedit laporan
-    // public function edit($id)
-    // {
-    //     $laporan = Pelaporan::findOrFail($id); // Ambil data laporan berdasarkan ID
-    //     $personnels = Personil::all(); // Ambil data personil
-    //     return view('admin.pelaporan.edit', compact('laporan', 'personnels'));
-    // }
+        // Menyimpan gambar data diri
+        if ($request->hasFile('data_diri')) {
+            $file = $request->file('data_diri');
+            $path = $file->store('uploads/data_diri', 'public'); // Store in public/uploads/data_diri
+            $laporan->data_diri = $path;
+        }
+
+        $laporan->save(); // Save changes to the database
+
+        return redirect()->route('Pelaporan.index')->with('success', 'Laporan berhasil disimpan.');
+    }
 
     public function edit($id)
     {

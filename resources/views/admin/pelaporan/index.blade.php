@@ -18,14 +18,48 @@
                                 <i class="fa-regular fa-file" style="color: #000000;"></i> &nbsp;
                                 <b class="ms-2">DAFTAR PELAPORAN</b>
                             </div>
-                            <nav class="d-flex align-items-center">
+                            <div class="d-flex align-items-center flex-wrap">
+                                <form method="GET" action="{{ route('Pelaporan.index') }}" class="d-flex align-items-center">
+                                    <!-- Dropdown Pilih Bulan -->
+                                    <div class="me-2 mb-2">
+                                        <select name="month" id="select-month" class="form-select form-select-sm">
+                                            <option value="">-Pilih Bulan-</option>
+                                            @foreach (range(1, 12) as $month)
+                                                <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>
+                                                    {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <!-- Dropdown Pilih Tahun -->
+                                    <div class="me-2 mb-2">
+                                        <select name="year" id="select-year" class="form-select form-select-sm">
+                                            <option value="">-Pilih Tahun-</option>
+                                            {{-- @foreach ($tahun as $thn)
+                                                <option value="{{ $thn->data_tahun }}" {{ request('year') == $thn->data_tahun ? 'selected' : '' }}>
+                                                    {{ $thn->data_tahun }}
+                                                </option>
+                                            @endforeach --}}
+                                        </select>
+                                    </div>
+
+                                    <!-- Tombol Search -->
+                                    <div class="me-2 mb-2">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <!-- Tombol Tambah Laporan -->
                                 <a class="btn btn-success btn-sm mb-2" href="{{ route('Pelaporan.create') }}">
                                     <i class="fa fa-plus"></i> &nbsp;Tambah Laporan
                                 </a>
-                            </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -131,6 +165,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
+                                {{-- //benar
                                 <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
                                     aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -204,7 +239,112 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div> --}}
+
+                                <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
+                                    aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="laporanDetailModalLabel-{{ $laporan->id }}">
+                                                    <b>DETAIL LAPORAN</b>
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Informasi Laporan</b>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Jenis Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->jenis_kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Hari Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Laporan Masuk</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->laporan_masuk }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Berangkat</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->berangkat }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Tiba</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Display Dokumentasi Image -->
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Dokumentasi</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                @if($laporan->dokumentasi)
+                                                                    <img src="{{ asset('storage/' . $laporan->dokumentasi) }}" alt="Dokumentasi" class="img-fluid" style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada dokumentasi tersedia</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Display Data Diri Image -->
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Data Diri</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                @if($laporan->data_diri)
+                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}" alt="Data Diri" class="img-fluid" style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Add more detail items as needed -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
 
                             @endforeach
                         </tbody>

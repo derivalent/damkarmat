@@ -160,7 +160,8 @@
     <div class="container-fluid px-4">
         <h3 class="mt-4"><b>EDIT LAPORAN</b></h3>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan Pelaporan</a></li>
             <li class="breadcrumb-item active">Edit Laporan</li>
         </ol>
 

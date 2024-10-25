@@ -78,6 +78,80 @@
                                 </tr>
 
                                 <!-- Modal for laporan details -->
+                                {{-- <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
+                                    aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="laporanDetailModalLabel-{{ $laporan->id }}">
+                                                    <b>DETAIL LAPORAN</b>
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <b>Informasi Laporan</b>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Jenis Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->jenis_kejadian }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Hari Kejadian</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ \Carbon\Carbon::parse($laporan->hari_kejadian)->translatedFormat('d F Y') }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Laporan Masuk</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->laporan_masuk }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Berangkat</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->berangkat }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Tiba</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
                                 <div class="modal fade" id="laporanDetailModal-{{ $laporan->id }}" tabindex="-1"
                                     aria-labelledby="laporanDetailModalLabel-{{ $laporan->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -142,6 +216,35 @@
                                                                 <span class="detail-value">: &nbsp;{{ $laporan->tiba }}</span>
                                                             </div>
                                                         </div>
+
+                                                        <!-- Display Dokumentasi Image -->
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Dokumentasi</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                @if($laporan->dokumentasi)
+                                                                    <img src="{{ asset('storage/' . $laporan->dokumentasi) }}" alt="Dokumentasi" class="img-fluid" style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada dokumentasi tersedia</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Display Data Diri Image -->
+                                                        <div class="row mb-2">
+                                                            <div class="col-4">
+                                                                <span class="detail-label" style="font-weight: bold;">Data Diri</span>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                @if($laporan->data_diri)
+                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}" alt="Data Diri" class="img-fluid" style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
                                                         <!-- Add more detail items as needed -->
                                                     </div>
                                                 </div>
@@ -152,6 +255,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach
                         </tbody>
                     </table>
