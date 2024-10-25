@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\BelajarController;
 
 
 /*
@@ -66,6 +67,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('tahun/{tahun}', [TahunController::class, 'update'])->name('Tahun.update'); // Update an existing year
     Route::delete('tahun/{tahun}', [TahunController::class, 'destroy'])->name('Tahun.destroy'); // Delete a year
     // Route::get('/personil', [AdminController::class, 'personil'])->name('Personil'); //button untuk mengakses view kelola personil
+
+    // Kegiatan Edukasi->belajar
+    // Route::get('index', [PelaporanController::class, 'index'])->name('KegiatanEdukasi.index');
+    // Menampilkan daftar belajar
+    Route::get('belajar', [BelajarController::class, 'index'])->name('belajar.index');
+
+    // Menampilkan form untuk menambah data baru
+    Route::get('belajar/create', [BelajarController::class, 'create'])->name('belajar.create');
+
+    // Menyimpan data baru
+    Route::post('belajar', [BelajarController::class, 'store'])->name('belajar.store');
+
+    // Menampilkan form untuk mengedit data
+    Route::get('belajar/{id}/edit', [BelajarController::class, 'edit'])->name('belajar.edit');
+
+    // Memperbarui data
+    Route::put('belajar/{id}', [BelajarController::class, 'update'])->name('belajar.update');
+
+    // Menghapus data
+    Route::delete('belajar/{id}', [BelajarController::class, 'destroy'])->name('belajar.destroy');
+
 
     // kelola personil
     Route::get('personil', [PersonilController::class, 'index'])->name('Personil.index');

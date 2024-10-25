@@ -33,7 +33,7 @@
                 <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">List Kegiatan Edukasi</a>
+                        <a class="nav-link" href="{{ route('belajar.index') }}">List Kegiatan Edukasi</a>
                         <a class="nav-link" href="layout-sidenav-light.html">Arsip Dokumen</a>
                         <a class="nav-link" href="layout-sidenav-light.html">Notulensi</a>
                         {{-- <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a> --}}
