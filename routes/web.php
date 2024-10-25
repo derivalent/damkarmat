@@ -85,6 +85,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('pelaporan/{id}/edit', [PelaporanController::class, 'edit'])->name('Pelaporan.edit'); // Form untuk mengedit laporan
     Route::put('pelaporan/{id}', [PelaporanController::class, 'update'])->name('Pelaporan.update'); // Memperbarui laporan
     Route::delete('pelaporan/{id}', [PelaporanController::class, 'destroy'])->name('Pelaporan.destroy'); // Menghapus laporan
+    // print pelaporan
+    // Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
+    Route::get('pelaporan/filter-print', [PelaporanController::class, 'filterPrint'])->name('Pelaporan.filterPrint');
+    Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
+
 
     //user
     Route::get('/user', [UserController::class, 'index'])->name('User.index');

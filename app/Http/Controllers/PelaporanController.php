@@ -4,21 +4,72 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelaporan;
 use App\Models\Personil;
+use App\Models\Tahun;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use PDF;
 
 class PelaporanController extends Controller
 {
     // Menampilkan daftar laporan
-    // public function index()
+    // public function index(Request $request)
     // {
-    //     $laporans = Pelaporan::all(); // Ambil semua data pelaporan
-    //     return view('admin.pelaporan.index', compact('laporans'));
+    //     // Retrieve all years for the dropdown
+    //     $tahun = Tahun::all();
+
+    //     // Capture the selected month and year from the request
+    //     $month = $request->get('month');
+    //     $year = $request->get('year');
+
+    //     // Filter Pelaporan based on month and year if they are provided
+    //     $query = Pelaporan::query();
+
+    //     if ($month) {
+    //         $query->whereMonth('hari_kejadian', $month);
+    //     }
+
+    //     if ($year) {
+    //         $query->whereYear('hari_kejadian', $year);
+    //     }
+
+    //     // Get the filtered data
+    //     $laporans = $query->get()->map(function ($laporan) {
+    //         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+    //         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+    //         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+    //         $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+    //         return $laporan;
+    //     });
+
+    //     return view('admin.pelaporan.index', compact('laporans', 'tahun', 'month', 'year'));
     // }
-    // Assuming you are fetching the laporan data in a method
-    public function index()
+    public function index(Request $request)
     {
-        $laporans = Pelaporan::all()->map(function ($laporan) {
+        // Retrieve all years for the dropdown
+        $tahun = Tahun::all();
+
+        // Capture the selected month, year, and jenis_kejadian from the request
+        $month = $request->get('month');
+        $year = $request->get('year');
+        $jenisKejadian = $request->get('jenis_kejadian');
+
+        // Filter Pelaporan based on month, year, and jenis_kejadian if they are provided
+        $query = Pelaporan::query();
+
+        if ($month) {
+            $query->whereMonth('hari_kejadian', $month);
+        }
+
+        if ($year) {
+            $query->whereYear('hari_kejadian', $year);
+        }
+
+        if ($jenisKejadian) {
+            $query->where('jenis_kejadian', $jenisKejadian);
+        }
+
+        // Get the filtered data
+        $laporans = $query->get()->map(function ($laporan) {
             $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
             $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
             $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
@@ -26,8 +77,10 @@ class PelaporanController extends Controller
             return $laporan;
         });
 
-        return view('admin.pelaporan.index', compact('laporans'));
+        return view('admin.pelaporan.index', compact('laporans', 'tahun', 'month', 'year', 'jenisKejadian'));
     }
+
+
 
     public function button_perkejadian()
     {
@@ -42,10 +95,44 @@ class PelaporanController extends Controller
         return view('admin.pelaporan.button_perkejadian', compact('laporans'));
     }
 
-    public function kebakaran()
+    // public function kebakaran()
+    // {
+
+    //     // Filter data berdasarkan jenis_kejadian 'kebakaran'
+    //     $laporans = Pelaporan::where('jenis_kejadian', 'kebakaran')->get()->map(function ($laporan) {
+    //         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+    //         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+    //         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+    //         $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+    //         return $laporan;
+    //     });
+
+    //     return view('admin.pelaporan.index_kebakaran', compact('laporans'));
+    // }
+
+    public function kebakaran(Request $request)
     {
-        // Filter data berdasarkan jenis_kejadian 'kebakaran'
-        $laporans = Pelaporan::where('jenis_kejadian', 'kebakaran')->get()->map(function ($laporan) {
+        // Retrieve all years for the dropdown
+        $tahun = Tahun::all();
+
+        // Capture the selected month and year from the request
+        $month = $request->get('month');
+        $year = $request->get('year');
+
+        // Start the query to filter by jenis_kejadian 'kebakaran'
+        $query = Pelaporan::where('jenis_kejadian', 'kebakaran');
+
+        // Filter Pelaporan based on month and year if they are provided
+        if ($month) {
+            $query->whereMonth('hari_kejadian', $month);
+        }
+
+        if ($year) {
+            $query->whereYear('hari_kejadian', $year);
+        }
+
+        // Get the filtered data
+        $laporans = $query->get()->map(function ($laporan) {
             $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
             $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
             $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
@@ -53,14 +140,48 @@ class PelaporanController extends Controller
             return $laporan;
         });
 
-        return view('admin.pelaporan.index_kebakaran', compact('laporans'));
+        return view('admin.pelaporan.index_kebakaran', compact('laporans', 'tahun', 'month', 'year'));
     }
 
 
-    public function penyelamatan()
+
+    // public function penyelamatan()
+    // {
+    //     // Filter data berdasarkan jenis_kejadian 'kebakaran'
+    //     $laporans = Pelaporan::where('jenis_kejadian', 'penyelamatan')->get()->map(function ($laporan) {
+    //         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+    //         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+    //         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+    //         $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+    //         return $laporan;
+    //     });
+
+    //     return view('admin.pelaporan.index_penyelamatan', compact('laporans'));
+    // }
+
+    public function penyelamatan(Request $request)
     {
-        // Filter data berdasarkan jenis_kejadian 'kebakaran'
-        $laporans = Pelaporan::where('jenis_kejadian', 'penyelamatan')->get()->map(function ($laporan) {
+        // Retrieve all years for the dropdown
+        $tahun = Tahun::all();
+
+        // Capture the selected month and year from the request
+        $month = $request->get('month');
+        $year = $request->get('year');
+
+        // Start the query to filter by jenis_kejadian 'kebakaran'
+        $query = Pelaporan::where('jenis_kejadian', 'penyelamatan');
+
+        // Filter Pelaporan based on month and year if they are provided
+        if ($month) {
+            $query->whereMonth('hari_kejadian', $month);
+        }
+
+        if ($year) {
+            $query->whereYear('hari_kejadian', $year);
+        }
+
+        // Get the filtered data
+        $laporans = $query->get()->map(function ($laporan) {
             $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
             $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
             $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
@@ -68,7 +189,7 @@ class PelaporanController extends Controller
             return $laporan;
         });
 
-        return view('admin.pelaporan.index_penyelamatan', compact('laporans'));
+        return view('admin.pelaporan.index_penyelamatan', compact('laporans', 'tahun', 'month', 'year'));
     }
 
 
@@ -271,5 +392,81 @@ class PelaporanController extends Controller
         $laporan->delete(); // Hapus data laporan
 
         return redirect()->route('Pelaporan.index')->with('success', 'Laporan berhasil dihapus.');
+    }
+
+    // // Metode untuk melakukan print pelaporan
+    // public function print(Request $request)
+    // {
+    //     // Capture the selected month and year from the request
+    //     $month = $request->get('month');
+    //     $year = $request->get('year');
+
+    //     // Filter Pelaporan based on month and year if they are provided
+    //     $query = Pelaporan::query();
+
+    //     if ($month) {
+    //         $query->whereMonth('created_at', $month);
+    //     }
+
+    //     if ($year) {
+    //         $query->whereYear('created_at', $year);
+    //     }
+
+    //     // Get the filtered data
+    //     $laporans = $query->get()->map(function ($laporan) {
+    //         $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+    //         $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+    //         $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+    //         $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+    //         return $laporan;
+    //     });
+
+    //     // Generate PDF
+    //     $pdf = PDF::loadView('admin.pelaporan.print', compact('laporans', 'month', 'year'));
+    //     return $pdf->download('laporan.pdf');
+    // }
+
+    // Metode untuk menampilkan form filter sebelum mencetak
+    public function filterPrint()
+    {
+        $tahun = Tahun::all(); // Ambil data tahun untuk dropdown
+        return view('admin.pelaporan.filterPrint', compact('tahun'));
+    }
+
+    // Metode untuk melakukan print pelaporan
+    public function print(Request $request)
+    {
+        // Capture the selected month, year, and jenis kejadian from the request
+        $month = $request->get('month');
+        $year = $request->get('year');
+        $jenisKeadaan = $request->get('jenis_keadaan');
+
+        // Filter Pelaporan based on month, year, and jenis kejadian if they are provided
+        $query = Pelaporan::query();
+
+        if ($month) {
+            $query->whereMonth('created_at', $month);
+        }
+
+        if ($year) {
+            $query->whereYear('created_at', $year);
+        }
+
+        if ($jenisKeadaan) {
+            $query->where('jenis_kejadian', $jenisKeadaan); // Sesuaikan dengan kolom di database Anda
+        }
+
+        // Get the filtered data
+        $laporans = $query->get()->map(function ($laporan) {
+            $laporan->laporan_masuk = Carbon::parse($laporan->laporan_masuk)->format('H:i');
+            $laporan->berangkat = Carbon::parse($laporan->berangkat)->format('H:i');
+            $laporan->tiba = Carbon::parse($laporan->tiba)->format('H:i');
+            $laporan->selesai = Carbon::parse($laporan->selesai)->format('H:i');
+            return $laporan;
+        });
+
+        // Generate PDF
+        $pdf = PDF::loadView('admin.pelaporan.print', compact('laporans', 'month', 'year', 'jenisKeadaan'));
+        return $pdf->download('laporan.pdf');
     }
 }
