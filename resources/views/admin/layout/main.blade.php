@@ -6,7 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
+        <title>Dinas Pemadam Kebakaran Banyuwangi</title>
+        {{-- <link rel="icon" type="image/png" href="images/logo_damkar.png"> --}}
+        {{-- <link rel="shortcut icon" type="x-icon" href="images/icon_logo_damkar.png"> --}}
+        {{-- <link rel="icon" type="x-icon" href="images/icon_logo_damkar.png"> --}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/icon_logo_damkar.png') }}">
+
+
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{ asset('css/styles_admin.css') }}" rel="stylesheet" />
         {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" /> --}}

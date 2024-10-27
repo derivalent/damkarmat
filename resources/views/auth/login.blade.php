@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SMPN 2 SEMPU</title>
+    <title>Dinas Pemadam Kebakaran Banyuwangi</title>
+    {{-- <link rel="icon" type="image/png" href="images/logo_damkar.png"> --}}
+    {{-- <link rel="shortcut icon" type="x-icon" href="images/icon_logo_damkar.png"> --}}
+    <link rel="icon" type="x-icon" href="images/icon_logo_damkar.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">

@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinas Pemadam Kebakaran Banyuwangi</title>
-    {{-- <link rel="icon" type="image/png" href="images/logo_damkar.png"> --}}
-    {{-- <link rel="shortcut icon" type="x-icon" href="images/icon_logo_damkar.png"> --}}
     <link rel="icon" type="x-icon" href="images/icon_logo_damkar.png">
 
     <!-- Bootstrap CSS -->

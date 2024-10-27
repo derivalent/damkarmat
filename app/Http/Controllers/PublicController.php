@@ -32,8 +32,12 @@ class PublicController extends Controller
 
 public function dashboard_public()
 {
-    $berita = Berita::all(); // Fetch all berita records
-    return view('public.dashboard', compact('berita')); // Pass berita directly
+    // $berita = Berita::all(); // Fetch all berita records
+    // return view('public.dashboard', compact('berita')); // Pass berita directly
+    // Get berita data sorted by 'created_at' in descending order
+    $berita = Berita::orderBy('created_at', 'desc')->get();
+    return view('public.dashboard', compact('berita'));
+
 }
 
 public function information()
