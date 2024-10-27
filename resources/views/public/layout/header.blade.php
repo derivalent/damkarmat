@@ -25,7 +25,7 @@
                     <a class="nav-link" href="berita_public">Berita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="dokumentasi_public">Dokumentasi</a>
+                    <a class="nav-link" href="{{ route('dokumentasi_public') }}">Dokumentasi</a>
                 </li>
                 <!-- Tambahkan menu sesuai kebutuhan -->
             </ul>

@@ -3,17 +3,17 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h3 class="mt-4"><b>DATA JADWAL EDUKASI</b></h3>
+            <h3 class="mt-4"><b>DATA DOKUMENTASI</b></h3>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Kelola Data Jadwal Edukasi</li>
+                <li class="breadcrumb-item active">Kelola Data Dokumentasi</li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between">
-                    <b>Data Belajar</b>
-                    <a class="btn btn-success btn-sm" href="{{ route('belajar.create') }}">
-                        <i class="fa fa-plus"></i> &nbsp;Tambah
+                    <b>Data Dokumentasi</b>
+                    <a class="btn btn-success btn-sm" href="{{ route('dokumentasi.create') }}">
+                        <i class="fa fa-plus"></i> &nbsp;Tambah Dokumentasi
                     </a>
                 </div>
                 <div class="card-body">
@@ -26,31 +26,27 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Audience</th>
-                                <th>Hari</th>
-                                <th>Jam</th>
-                                <th>Status</th>
+                                <th>Kegiatan</th>
+                                <th>Gambar</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($belajars as $belajar)
+                            @foreach ($dokumentasi as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $belajar->audience }}</td>
-                                    <td>{{ $belajar->hari }}</td>
-                                    <td>{{ $belajar->jam }}</td>
-                                    <td>{{ $belajar->status }}</td>
+                                    <td>{{ $data->kegiatan }}</td>
                                     <td>
-                                        <a href="{{ route('belajar.edit', $belajar->id) }}" class="btn btn-warning btn-sm">
+                                        <img src="{{ asset('storage/' . $data->gambar) }}" width="100" alt="Gambar Kegiatan">
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('dokumentasi.edit', $data->id) }}" class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('belajar.destroy', $belajar->id) }}" method="POST"
-                                            style="display: inline-block;">
+                                        <form action="{{ route('dokumentasi.destroy', $data->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Yakin ingin menghapus?')">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Hapus dokumentasi ini?')">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

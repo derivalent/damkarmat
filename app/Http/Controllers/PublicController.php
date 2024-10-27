@@ -18,8 +18,8 @@ public function berita_isi_public() {
     return view('public/berita_isi_public');
 }
 
-public function dokumentasi_public() {
-    return view('public/dokumentasi_public');
-}
+// public function dokumentasi_public() {
+//     return view('public/dokumentasi_public');
+// }
 
 }

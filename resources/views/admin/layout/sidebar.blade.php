@@ -18,7 +18,7 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="layout-static.html">Berita</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Dokumentasi</a>
+                        <a class="nav-link" href="{{ route('dokumentasi.index') }}">Dokumentasi</a>
                         {{-- <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                         <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a> --}}
                     </nav>

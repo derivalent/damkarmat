@@ -11,6 +11,7 @@ use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\BelajarController;
+use App\Http\Controllers\DokumentasiController;
 
 
 /*
@@ -45,11 +46,9 @@ Route::get('/berita_public', function () {
 
 Route::get('/berita_isi_public', [PublicController::class, 'berita_isi_public']);
 
-Route::get('/dokumentasi_public', [PublicController::class, 'dokumentasi_public']);
+// Route::get('/dokumentasi_public', [PublicController::class, 'dokumentasi_public']);
+Route::get('/dokumentasi', [DokumentasiController::class, 'index_public'])->name('dokumentasi_public');
 
-// Route::get('/berita_isi_public', [BeritaController::class, 'show_berita'])->name('berita.isi');
-
-// Route::get('/berita_isi_public', [BeritaController::class,'show_berita']);
 
 
 
@@ -70,24 +69,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Kegiatan Edukasi->belajar
     // Route::get('index', [PelaporanController::class, 'index'])->name('KegiatanEdukasi.index');
+
     // Menampilkan daftar belajar
     Route::get('belajar', [BelajarController::class, 'index'])->name('belajar.index');
-
-    // Menampilkan form untuk menambah data baru
     Route::get('belajar/create', [BelajarController::class, 'create'])->name('belajar.create');
-
-    // Menyimpan data baru
     Route::post('belajar', [BelajarController::class, 'store'])->name('belajar.store');
-
-    // Menampilkan form untuk mengedit data
     Route::get('belajar/{id}/edit', [BelajarController::class, 'edit'])->name('belajar.edit');
-
-    // Memperbarui data
     Route::put('belajar/{id}', [BelajarController::class, 'update'])->name('belajar.update');
-
-    // Menghapus data
     Route::delete('belajar/{id}', [BelajarController::class, 'destroy'])->name('belajar.destroy');
 
+    // dokumentasi
+    Route::get('dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');
+    Route::get('dokumentasi/create', [DokumentasiController::class, 'create'])->name('dokumentasi.create');
+    Route::post('dokumentasi', [DokumentasiController::class, 'store'])->name('dokumentasi.store');
+    Route::get('dokumentasi/{id}/edit', [DokumentasiController::class, 'edit'])->name('dokumentasi.edit');
+    Route::put('dokumentasi/{id}', [DokumentasiController::class, 'update'])->name('dokumentasi.update');
+    Route::delete('dokumentasi/{id}', [DokumentasiController::class, 'destroy'])->name('dokumentasi.destroy');
 
     // kelola personil
     Route::get('personil', [PersonilController::class, 'index'])->name('Personil.index');
