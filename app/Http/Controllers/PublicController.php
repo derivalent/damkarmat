@@ -24,10 +24,16 @@ class PublicController extends Controller
 //     return view('public.dashboard', ['cards' => $cards]);
 // }
 
+// public function dashboard_public()
+// {
+//     $berita = Berita::all(); // Fetch all berita records
+//     return view('public.dashboard', ['berita' => $berita]); // Pass berita directly
+// }
+
 public function dashboard_public()
 {
     $berita = Berita::all(); // Fetch all berita records
-    return view('public.dashboard', ['berita' => $berita]); // Pass berita directly
+    return view('public.dashboard', compact('berita')); // Pass berita directly
 }
 
 public function information()
