@@ -3,11 +3,11 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Tambah Data Belajar</h1>
+        <h3 class="mt-4"><b> TAMBAH JADWAL EDUKASI</b></h3>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"><a href="{{ route('DashboardAdmin') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('belajar.index') }}">Kelola Data Belajar</a></li>
-            <li class="breadcrumb-item active">Tambah Data Belajar</li>
+            <li class="breadcrumb-item active"><a href="{{ route('belajar.index') }}">Kelola Jadwal Edukasi</a></li>
+            <li class="breadcrumb-item active">Tambah Jadwal Edukasi</li>
         </ol>
 
         <div class="card mb-4">

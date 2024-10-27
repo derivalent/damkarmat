@@ -10,7 +10,5 @@ class AdminController extends Controller
         return view('admin.dashboard.dashboard_admin');
    }
 
-//    public function personil() {
-//     return view('admin.personil.index');
-// }
+
 }

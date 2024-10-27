@@ -193,7 +193,7 @@
         </div>
     </main>
 
-    <script>
+    {{-- <script>
         //js berita//
         // Data card berita yang akan ditampilkan
         var cards = [{
@@ -292,5 +292,140 @@
         displayCards(1);
         displayPagination();
         //js berita akhir//
+    </script> --}}
+
+    {{-- <script>
+        // Variabel untuk menyimpan data kartu berita
+        var cards = @json($cards); // Mengambil data cards dari PHP
+
+        // Fungsi untuk menampilkan card pada halaman tertentu
+        function displayCards(page) {
+            var startIndex = (page - 1) * 3;
+            var endIndex = Math.min(startIndex + 3, cards.length);
+
+            var cardContainer = document.getElementById('card-container');
+            cardContainer.innerHTML = '';
+
+            for (var i = startIndex; i < endIndex; i++) {
+                var cardData = cards[i];
+                var cardHtml = `
+                    <div class="col mb-2">
+                        <div class="card h-100 text-center">
+                            <div class="card-header bg-danger"></div>
+                            <a href="${cardData.link}"><img src="${cardData.imageUrl}" class="card-img-top" alt="${cardData.title}" /></a>
+                            <div class="card-body">
+                                <a href="${cardData.link}"><h5 class="card-title">${cardData.title}</h5></a>
+                                <p class="card-text">${cardData.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" onclick="window.location.href = '${cardData.link}';">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cardContainer.innerHTML += cardHtml;
+            }
+        }
+
+        // Fungsi untuk menampilkan pagination
+        function displayPagination() {
+            var pagination = document.getElementById('pagination').querySelector('ul');
+            pagination.innerHTML = '';
+
+            var numPages = Math.ceil(cards.length / 3);
+            for (var i = 1; i <= numPages; i++) {
+                var listItem = document.createElement('li');
+                listItem.classList.add('page-item');
+
+                var link = document.createElement('a');
+                link.classList.add('page-link');
+                link.href = '#';
+                link.textContent = i;
+                link.onclick = function() {
+                    displayCards(parseInt(this.textContent));
+                    return false; // Mencegah perilaku default
+                };
+
+                listItem.appendChild(link);
+                pagination.appendChild(listItem);
+            }
+        }
+
+        // Tampilkan data saat halaman dimuat
+        displayCards(1); // Tampilkan halaman pertama
+        displayPagination(); // Tampilkan pagination
+    </script> --}}
+
+    <script>
+        // Data berita dari database
+        var berita = @json($berita);
+
+        // Mengubah data berita menjadi format yang sesuai
+        var cards = berita.map(item => ({
+            imageUrl: `{{ asset('storage/images_berita') }}/${item.gambar}`,
+            title: item.judul,
+            description: item.isi, // Use the appropriate field for description
+            link: `{{ url('/berita_isi_public') }}/${item.id}`,
+        }));
+
+        // Fungsi untuk menampilkan card pada halaman tertentu
+        function displayCards(page) {
+            var startIndex = (page - 1) * 3;
+            var endIndex = Math.min(startIndex + 3, cards.length);
+
+            var cardContainer = document.getElementById('card-container');
+            cardContainer.innerHTML = '';
+
+            for (var i = startIndex; i < endIndex; i++) {
+                var cardData = cards[i];
+                var cardHtml = `
+                    <div class="col mb-2">
+                        <div class="card h-100 text-center">
+                            <div class="card-header bg-danger"></div>
+                            <a href="${cardData.link}"><img src="${cardData.imageUrl}" class="card-img-top" alt="${cardData.title}" /></a>
+                            <div class="card-body">
+                                <a href="${cardData.link}"><h5 class="card-title">${cardData.title}</h5></a>
+                                <p class="card-text">${cardData.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" onclick="window.location.href = '${cardData.link}';">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cardContainer.innerHTML += cardHtml;
+            }
+        }
+
+        // Fungsi untuk menampilkan pagination
+        function displayPagination() {
+            var pagination = document.getElementById('pagination').querySelector('ul');
+            pagination.innerHTML = '';
+
+            var numPages = Math.ceil(cards.length / 3);
+            for (var i = 1; i <= numPages; i++) {
+                var listItem = document.createElement('li');
+                listItem.classList.add('page-item');
+
+                var link = document.createElement('a');
+                link.classList.add('page-link');
+                link.href = '#';
+                link.textContent = i;
+                link.onclick = function() {
+                    displayCards(parseInt(this.textContent));
+                    return false; // Prevent default behavior
+                };
+
+                listItem.appendChild(link);
+                pagination.appendChild(listItem);
+            }
+        }
+
+        // Display data when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCards(1); // Show the first page
+            displayPagination(); // Show pagination
+        });
     </script>
+
 @endsection

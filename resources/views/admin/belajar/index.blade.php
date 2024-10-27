@@ -10,12 +10,19 @@
             </ol>
 
             <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between">
+                {{-- <div class="card-header d-flex justify-content-between">
                     <b>Data Belajar</b>
                     <a class="btn btn-success btn-sm" href="{{ route('belajar.create') }}">
                         <i class="fa fa-plus"></i> &nbsp;Tambah
                     </a>
+                </div> --}}
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <b>DATA JADWAL EDUKASI</b>
+                    <a class="btn btn-success btn-sm" href="{{ route('belajar.create') }}">
+                        <i class="fa fa-plus"></i> &nbsp;Tambah
+                    </a>
                 </div>
+
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">

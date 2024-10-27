@@ -7,7 +7,7 @@
 .navbar-brand .logo-img {
     width: 15vw;
     /* Ukuran gambar responsif */
-    max-width: 150px;
+    max-width: 80px;
     /* Batasan maksimum ukuran gambar */
     height: auto;
     /* Menjaga proporsi gambar */

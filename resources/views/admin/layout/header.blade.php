@@ -66,7 +66,7 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="/indexprofile">Logout</a></li>
+                <li><a class="dropdown-item" href="{{ route('Dashboard_public') }}">Logout</a></li>
             </ul>
         </li>
     </ul>

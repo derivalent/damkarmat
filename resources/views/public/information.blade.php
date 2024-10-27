@@ -128,11 +128,11 @@
                         <div class="card-body">
                             <h5 class="card-title">DOKUMENTASI KEGIATAN</h5>
                             <p class="card-text" style="text-align: justify;">
-                                Pengunjung dapat melihat beberapa dokumentasi kegiatan Pelayanan dan penanganan yang dilakukan oleh Dinas Pemadam Kebakaran dan Penyelamatan Kabupaten Banyuwangi.
+                                Klik tombol dibawah untul melihat beberapa dokumentasi kegiatan Pelayanan dan penanganan yang dilakukan oleh Dinas Pemadam Kebakaran dan Penyelamatan Kabupaten Banyuwangi.
                             </p>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success" onclick="window.location.href = '${cardData.link}';">Lihat Dokumentasi</button>
+                            <button class="btn btn-success" onclick="window.location='{{ route('dokumentasi_public') }}';">Lihat Dokumentasi</button>
                         </div>
                     </div>
                 </div>

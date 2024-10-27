@@ -31,23 +31,27 @@ Route::get('/', function () {
     return view('public/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    // return view('welcome');
-    return view('public/dashboard');
-});
+// Route::get('/dashboard', function () {
+//  return view('public/dashboard');
+// });
 
-Route::get('/information', function () {
-    return view('public.information');
-});
+Route::get('/dashboard', [PublicController::class, 'dashboard_public'])->name('Dashboard_public');
 
-Route::get('/berita_public', function () {
-    return view('public.berita_public');
-});
+// Route::get('/', [AdminController::class, 'dashboard_admin']);
+// Route::get('/dashboard', [AdminController::class, 'dashboard_admin'])->name('Dashboard_public');
 
-Route::get('/berita_isi_public', [PublicController::class, 'berita_isi_public']);
 
-// Route::get('/dokumentasi_public', [PublicController::class, 'dokumentasi_public']);
+// Route::get('/information', function () {
+//     return view('public.information');
+// });
+
+Route::get('/information', [PublicController::class, 'information'])->name('Information');
+
+
 Route::get('/dokumentasi', [DokumentasiController::class, 'index_public'])->name('dokumentasi_public');
+
+Route::get('/berita_public', [PublicController::class, 'berita_public'])->name('BeritaPublic');
+Route::get('/berita_isi_public/{id}', [PublicController::class, 'berita_isi_public'])->name('BeritaIsiPublic');
 
 
 
@@ -77,6 +81,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('belajar/{id}/edit', [BelajarController::class, 'edit'])->name('belajar.edit');
     Route::put('belajar/{id}', [BelajarController::class, 'update'])->name('belajar.update');
     Route::delete('belajar/{id}', [BelajarController::class, 'destroy'])->name('belajar.destroy');
+
+    //CRUD Berita
+    Route::get('/berita', [BeritaController::class, 'index'])->name('Berita.index');
+    Route::get('/berita/create', [BeritaController::class, 'create'])->name('Berita.create');
+    Route::post('/berita/store', [BeritaController::class, 'store'])->name('Berita.store');
+    Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('Berita.edit');
+    Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('Berita.update');
+    Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('Berita.destroy');
 
     // dokumentasi
     Route::get('dokumentasi', [DokumentasiController::class, 'index'])->name('dokumentasi.index');
