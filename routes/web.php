@@ -35,6 +35,11 @@ Route::get('/', function () {
 //  return view('public/dashboard');
 // });
 
+Route::post('/admin/select-year', [AdminController::class, 'dashboard_admin'])->name('admin.selectYear');
+// Route::get('/public/selectYear', [PublicController::class, 'dashboard_public'])->name('public.selectYear');
+Route::post('/public/selectYear', [PublicController::class, 'dashboard_public'])->name('public.selectYear');
+
+
 Route::get('/dashboard', [PublicController::class, 'dashboard_public'])->name('Dashboard_public');
 
 // Route::get('/', [AdminController::class, 'dashboard_admin']);
@@ -107,26 +112,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::delete('personil/{personil}', [PersonilController::class, 'destroy'])->name('Personil.destroy');
 
     // pelaporan
-    Route::get('pelaporan', [PelaporanController::class, 'index'])->name('Pelaporan.index'); // Menampilkan daftar laporan tanpa filter
-    Route::get('button_perkejadian', [PelaporanController::class, 'button_perkejadian'])->name('Pelaporan.button_perkejadian');
-    Route::get('kebakaran', [PelaporanController::class, 'kebakaran'])->name('Pelaporan.kebakaran');
-    Route::get('penyelamatan', [PelaporanController::class, 'penyelamatan'])->name('Pelaporan.penyelamatan');
-    Route::get('pelaporan/create', [PelaporanController::class, 'create'])->name('Pelaporan.create'); // Form untuk membuat laporan
-    Route::post('pelaporan', [PelaporanController::class, 'store'])->name('Pelaporan.store'); // Menyimpan laporan baru
-    Route::get('pelaporan/{id}/edit', [PelaporanController::class, 'edit'])->name('Pelaporan.edit'); // Form untuk mengedit laporan
-    Route::put('pelaporan/{id}', [PelaporanController::class, 'update'])->name('Pelaporan.update'); // Memperbarui laporan
-    Route::delete('pelaporan/{id}', [PelaporanController::class, 'destroy'])->name('Pelaporan.destroy'); // Menghapus laporan
-    // print pelaporan
-    // Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
-    Route::get('pelaporan/filter-print', [PelaporanController::class, 'filterPrint'])->name('Pelaporan.filterPrint');
-    Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
+    Route::prefix('pelaporan')->group(function () {
+        Route::get('pelaporan', [PelaporanController::class, 'index'])->name('Pelaporan.index'); // Menampilkan daftar laporan tanpa filter
+        Route::get('button_perkejadian', [PelaporanController::class, 'button_perkejadian'])->name('Pelaporan.button_perkejadian');
+        Route::get('kebakaran', [PelaporanController::class, 'kebakaran'])->name('Pelaporan.kebakaran');
+        Route::get('penyelamatan', [PelaporanController::class, 'penyelamatan'])->name('Pelaporan.penyelamatan');
+        Route::get('pelaporan/create', [PelaporanController::class, 'create'])->name('Pelaporan.create'); // Form untuk membuat laporan
+        Route::post('pelaporan', [PelaporanController::class, 'store'])->name('Pelaporan.store'); // Menyimpan laporan baru
+        Route::get('pelaporan/{id}/edit', [PelaporanController::class, 'edit'])->name('Pelaporan.edit'); // Form untuk mengedit laporan
+        Route::put('pelaporan/{id}', [PelaporanController::class, 'update'])->name('Pelaporan.update'); // Memperbarui laporan
+        Route::delete('pelaporan/{id}', [PelaporanController::class, 'destroy'])->name('Pelaporan.destroy'); // Menghapus laporan
+        // print pelaporan
+        // Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
+        Route::get('pelaporan/filter-print', [PelaporanController::class, 'filterPrint'])->name('Pelaporan.filterPrint');
+        Route::get('pelaporan/print', [PelaporanController::class, 'print'])->name('Pelaporan.print');
+    });
 
 
     //user
-    Route::get('/user', [UserController::class, 'index'])->name('User.index');
-    Route::get('/user/create', [UserController::class, 'create'])->name('User.create');
-    Route::post('/admin/user/store', [UserController::class, 'store'])->name('User.store');
-    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('User.edit');
-    Route::put('/user/{id}', [UserController::class, 'update'])->name('User.update');
-    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('User.destroy');
+    Route::middleware(['role:1'])->group(function () {
+        Route::get('/user', [UserController::class, 'index'])->name('User.index');
+        Route::get('/user/create', [UserController::class, 'create'])->name('User.create');
+        Route::post('/admin/user/store', [UserController::class, 'store'])->name('User.store');
+        Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('User.edit');
+        Route::put('/user/{id}', [UserController::class, 'update'])->name('User.update');
+        Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('User.destroy');
+    });
 });

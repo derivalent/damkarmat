@@ -23,6 +23,7 @@
                         <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a> --}}
                     </nav>
                 </div>
+                @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                 <div class="sb-sidenav-menu-heading">Data</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                     data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
@@ -39,6 +40,7 @@
                         {{-- <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a> --}}
                     </nav>
                 </div>
+                @endif
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-phone-volume"></i></div>
@@ -52,16 +54,25 @@
                         <a class="nav-link" href="{{ route('Pelaporan.button_perkejadian') }}">Penanganan Pelaporan per Jenis</a>
                     </nav>
                 </div>
+
+                @if(Auth::user()->role == 1)
                 <div class="sb-sidenav-menu-heading">User Management</div>
                 <a class="nav-link" href="{{ route('User.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                     Pengguna
                 </a>
-            </div>
+                </div>
+                @endif
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            {{-- <div class="small">Logged in as:</div>
+            Start Bootstrap --}}
+            <form method="POST" action="{{ route('Logout') }}">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i> Logout</div>
+                </button>
+            </form>
         </div>
     </nav>
 </div>

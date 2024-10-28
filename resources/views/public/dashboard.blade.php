@@ -1,5 +1,6 @@
 @extends('public/layout/main')
 @section('content')
+
     <main class="container">
         <div class="row gx-4 gx-lg-5 align-items-center my-4">
             <div class="col-lg-5" style="padding-left: 3%; padding-top: 1rem;">
@@ -69,6 +70,7 @@
 
 
         <!-- Tampilan crad -->
+
         <div class="row">
             <!-- <div class="col-md-12 py-5 mt-2"  style="background-color: #b1d7ff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"> -->
             <div class="col-md-12 py-2 mt-2">
@@ -88,6 +90,7 @@
             </div>
 
         </div>
+        <section class="section_public">
         <div class="row">
             <div class="col-md-7 mt-4 mb-4" style="height: 350px;">
                 <div class="card h-100">
@@ -166,6 +169,7 @@
                 </script>
             </div>
         </div>
+    </section>
         <div class="container-fluid px-4">
             <center>
                 <h3 class="mt-4 mb-4"><b>GRAFIK KEJADIAN</b></h3>
@@ -175,7 +179,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Data Kebakaran dan non-kebakaran 2023
+                            <b> Penanganan Kebakaran dan Penyelamatan Perbulan </b>
                         </div>
                         <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                     </div>
@@ -186,175 +190,56 @@
                             <i class="fas fa-chart-bar me-1"></i>
                             Bar Chart Example
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body"><canvas id="myYearlyBarChart" width="100%" height="40"></canvas></div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+
+                        {{-- <form action="{{ route('public.selectYear') }}" method="POST">
+                            @csrf
+                            <select name="year">
+                                @foreach ($years as $year)
+                                    <option value="{{ $year }}">{{ $year }}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit">Select Year</button>
+                        </form> --}}
+
+                        <form method="POST" action="{{ route('public.selectYear') }}" class="mb-3">
+                            @csrf
+                            <div class="form-group">
+                                <label for="yearSelect">Pilih Data Penanganan Perbulan:</label>
+                                <select name="year" id="yearSelect" class="form-control"
+                                    onchange="this.form.submit()">
+                                    @foreach ($years as $yearOption)
+                                        <option value="{{ $yearOption }}" {{ $yearOption == $year ? 'selected' : '' }}>
+                                            {{ $yearOption }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+                <div class="col-xl-6">
+                    {{-- <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Bar Chart Example
+                        </div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </main>
 
-    {{-- <script>
-        //js berita//
-        // Data card berita yang akan ditampilkan
-        var cards = [{
-                imageUrl: 'images/logo_damkar_resize.png',
-                title: 'Penginapan',
-                description: 'Penginapan yang disediakan pada hotel aston terbagi sesuai tipe kamar dan terdapat tipe tempat tidur yang bisa dipilih oleh pemesan.',
-                link: 'penginapan.php'
-            },
-            {
-                imageUrl: 'images/logo_kab_banyuwangi.png',
-                title: 'Sewa Ruangan',
-                description: 'Ruangan dapat disewa pada hotel aston seperti Balriim untuk kegiatan, terdadpat area kolah ataupun beberapa tempat lainnya yang ocok digunakan untuk kegiatan acara.',
-                link: 'sewaruangan.php'
-            },
-            {
-                imageUrl: 'images/logo_damkar.png',
-                title: 'Restoran',
-                description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.',
-                link: 'restoran.php'
-            },
-            {
-                imageUrl: 'images/logo_damkar.png',
-                title: 'Restoran',
-                description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.',
-                link: 'restoran.php'
-            },
-            {
-                imageUrl: 'images/logo_damkar.png',
-                title: 'Restoran',
-                description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.',
-                link: 'restoran.php'
-            },
-            {
-                imageUrl: 'images/logo_damkar.png',
-                title: 'Restoran',
-                description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.',
-                link: 'restoran.php'
-            }
-
-        ];
-
-        // Fungsi untuk menampilkan card pada halaman tertentu
-        function displayCards(page) {
-            var startIndex = (page - 1) * 3;
-            var endIndex = Math.min(startIndex + 3, cards.length);
-
-            var cardContainer = document.getElementById('card-container');
-            cardContainer.innerHTML = '';
-
-            for (var i = startIndex; i < endIndex; i++) {
-                var cardData = cards[i];
-                var cardHtml = `
-    <div class="col mb-2">
-        <div class="card h-100 text-center ">
-            <div class="card-header bg-danger"></div>
-           <a href="${cardData.link}"><img src="${cardData.imageUrl}" class="card-img-top" alt="${cardData.title}" /></a>
-            <div class="card-body">
-               <a href="${cardData.link}"><h5 class="card-title">${cardData.title}</h5></a>
-                <p class="card-text">${cardData.description}</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary" onclick="window.location.href = '${cardData.link}';">Detail</button>
-            </div>
-        </div>
-    </div>
-`;
-                cardContainer.innerHTML += cardHtml;
-            }
-        }
-
-        // Fungsi untuk menampilkan pagination//
-        function displayPagination() {
-            var pagination = document.getElementById('pagination').querySelector('ul');
-            pagination.innerHTML = '';
-
-            var numPages = Math.ceil(cards.length / 3);
-            for (var i = 1; i <= numPages; i++) {
-                var listItem = document.createElement('li');
-                listItem.classList.add('page-item');
-
-                var link = document.createElement('a');
-                link.classList.add('page-link');
-                link.href = '#';
-                link.textContent = i;
-                link.onclick = function() {
-                    displayCards(parseInt(this.textContent));
-                    return false; // Mencegah perilaku default
-                };
-
-                listItem.appendChild(link);
-                pagination.appendChild(listItem);
-            }
-        }
-
-        // Menampilkan halaman pertama saat halaman dimuat
-        displayCards(1);
-        displayPagination();
-        //js berita akhir//
-    </script> --}}
-
-    {{-- <script>
-        // Variabel untuk menyimpan data kartu berita
-        var cards = @json($cards); // Mengambil data cards dari PHP
-
-        // Fungsi untuk menampilkan card pada halaman tertentu
-        function displayCards(page) {
-            var startIndex = (page - 1) * 3;
-            var endIndex = Math.min(startIndex + 3, cards.length);
-
-            var cardContainer = document.getElementById('card-container');
-            cardContainer.innerHTML = '';
-
-            for (var i = startIndex; i < endIndex; i++) {
-                var cardData = cards[i];
-                var cardHtml = `
-                    <div class="col mb-2">
-                        <div class="card h-100 text-center">
-                            <div class="card-header bg-danger"></div>
-                            <a href="${cardData.link}"><img src="${cardData.imageUrl}" class="card-img-top" alt="${cardData.title}" /></a>
-                            <div class="card-body">
-                                <a href="${cardData.link}"><h5 class="card-title">${cardData.title}</h5></a>
-                                <p class="card-text">${cardData.description}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary" onclick="window.location.href = '${cardData.link}';">Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                cardContainer.innerHTML += cardHtml;
-            }
-        }
-
-        // Fungsi untuk menampilkan pagination
-        function displayPagination() {
-            var pagination = document.getElementById('pagination').querySelector('ul');
-            pagination.innerHTML = '';
-
-            var numPages = Math.ceil(cards.length / 3);
-            for (var i = 1; i <= numPages; i++) {
-                var listItem = document.createElement('li');
-                listItem.classList.add('page-item');
-
-                var link = document.createElement('a');
-                link.classList.add('page-link');
-                link.href = '#';
-                link.textContent = i;
-                link.onclick = function() {
-                    displayCards(parseInt(this.textContent));
-                    return false; // Mencegah perilaku default
-                };
-
-                listItem.appendChild(link);
-                pagination.appendChild(listItem);
-            }
-        }
-
-        // Tampilkan data saat halaman dimuat
-        displayCards(1); // Tampilkan halaman pertama
-        displayPagination(); // Tampilkan pagination
-    </script> --}}
+   
 
     {{-- //padahal tadi siang bisa --}}
     {{-- <script>
@@ -431,7 +316,7 @@
 
     <script>
         // Data berita dari database
-        
+
         var berita = @json($berita ?? []);
 
 
@@ -500,6 +385,109 @@
         document.addEventListener('DOMContentLoaded', function() {
             displayCards(1); // Tampilkan halaman pertama
             displayPagination(); // Tampilkan pagination
+        });
+    </script>
+
+
+    {{-- //ini tampilan grafik kejadian bulanan --}}
+    <script>
+        const labels = @json($labels);
+        const kebakaranData = @json($kebakaranData);
+        const penyelamatanData = @json($penyelamatanData);
+        const yearlyLabels = @json($yearlyLabels);
+        const yearlyKebakaranData = @json($yearlyKebakaranData).map(Math.round); // Ubah ke integer
+        const yearlyPenyelamatanData = @json($yearlyPenyelamatanData).map(Math.round); // Ubah ke integer
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('myAreaChart').getContext('2d');
+            const myAreaChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels, // Use the labels from the PHP variable
+                    datasets: [{
+                            label: 'Kejadian Kebakaran',
+                            data: kebakaranData, // Use the kebakaran data from the PHP variable
+                            borderColor: 'rgba(255, 0, 0, 1)',
+                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                            fill: true
+                        },
+                        {
+                            label: 'Kejadian Penyelamatan',
+                            data: penyelamatanData, // Use the penyelamatan data from the PHP variable
+                            borderColor: 'rgba(0, 0, 255, 1)',
+                            backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Grafik Kejadian Kebakaran dan Penyelamatan Tahun ini'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        // Yearly Bar Chart
+        const ctxBar = document.getElementById('myYearlyBarChart').getContext('2d');
+        const myYearlyBarChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: yearlyLabels,
+                datasets: [{
+                        label: 'Kejadian Kebakaran',
+                        data: yearlyKebakaranData,
+                        backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                    },
+                    {
+                        label: 'Kejadian Penyelamatan',
+                        data: yearlyPenyelamatanData,
+                        backgroundColor: 'rgba(0, 0, 255, 0.6)',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Grafik Kejadian Kebakaran dan Penyelamatan Per Tahun'
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1, // Set step size to 1 for whole numbers
+                            callback: function(value) {
+                                return Math.round(value); // Round the values to nearest integer
+                            }
+                        }
+                    }
+                }
+            }
         });
     </script>
 @endsection
