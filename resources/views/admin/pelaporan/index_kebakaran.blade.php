@@ -345,14 +345,16 @@
                                                                         style="font-weight: bold;">Data Diri</span>
                                                                 </div>
                                                                 <div class="col-8">
-                                                                    @if ($laporan->data_diri)
+                                                                    {{-- @if ($laporan->data_diri)
                                                                         <img src="{{ asset('storage/' . $laporan->data_diri) }}"
                                                                             alt="Data Diri" class="img-fluid"
                                                                             style="max-height: 200px; width: auto;">
                                                                     @else
                                                                         <span class="detail-value">: &nbsp;Tidak ada data
                                                                             diri tersedia</span>
-                                                                    @endif
+                                                                    @endif --}}
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $laporan->data_diri }}</span>
                                                                 </div>
                                                             </div>
 
@@ -713,14 +715,16 @@
                                                                         style="font-weight: bold;">Data Diri</span>
                                                                 </div>
                                                                 <div class="col-8">
-                                                                    @if ($laporan->data_diri)
+                                                                    {{-- @if ($laporan->data_diri)
                                                                         <img src="{{ asset('storage/' . $laporan->data_diri) }}"
                                                                             alt="Data Diri" class="img-fluid"
                                                                             style="max-height: 200px; width: auto;">
                                                                     @else
                                                                         <span class="detail-value">: &nbsp;Tidak ada data
                                                                             diri tersedia</span>
-                                                                    @endif
+                                                                    @endif --}}
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $laporan->data_diri }}</span>
                                                                 </div>
                                                             </div>
 

@@ -28,7 +28,7 @@
             <div class="col-md-4 mb-3 contact-info">
                 <p><i class="fas fa-map-marker-alt"></i><span class="ms-2">Jl. Tiga Berlian Kel. Kepatihan Kec.
                         Banyuwangi Kab. Banyuwangi</span></p>
-                <p><i class="fas fa-phone"></i><span class="ms-2">0333 422113</span></p>
+                <p><i class="fas fa-phone"></i><span class="ms-2">112 / (0333) 422113 / 082211312113</span></p>
                 <p><i class="fas fa-envelope"></i><span class="ms-2">damkarbanyuwangi113@gmail.com</span></p>
             </div>
             <div class="col-md-4">

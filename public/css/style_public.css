@@ -7,7 +7,18 @@
 .navbar-brand .logo-img {
     width: 15vw;
     /* Ukuran gambar responsif */
-    max-width: 80px;
+    max-width: 50px;
+    /* Batasan maksimum ukuran gambar */
+    height: auto;
+    /* Menjaga proporsi gambar */
+    margin-right: 10px;
+    /* Menambahkan jarak antara gambar dan teks */
+}
+
+.navbar-brand .logo-img-kab {
+    width: 15vw;
+    /* Ukuran gambar responsif */
+    max-width: 40px;
     /* Batasan maksimum ukuran gambar */
     height: auto;
     /* Menjaga proporsi gambar */
@@ -17,6 +28,10 @@
 
 @media (max-width: 768px) {
     .navbar-brand .logo-img {
+        min-width: 110px;
+        /* Batasan minimum ukuran gambar untuk tablet dan handphone */
+    }
+    .navbar-brand .logo-img-kab {
         min-width: 110px;
         /* Batasan minimum ukuran gambar untuk tablet dan handphone */
     }

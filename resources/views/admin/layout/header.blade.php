@@ -28,6 +28,9 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/dashboardadmin">
             <img src="https://i.postimg.cc/1zzb34Jq/LOGO-DAMKAR.png" alt="logo damkar" width="50px">
+            {{-- <img src="https://i.postimg.cc/jdLB8q6b/logo-kab-Banyuwangi.png" alt="Dinas Pemadam Kebakaran" class="me-2 logo-img-kab">
+            <img src="https://i.postimg.cc/1zzb34Jq/logo_damkar_fix.jpg" alt="Dinas Pemadam Kebakaran" class="me-2 logo-img">
+            <img src="https://i.postimg.cc/DzFjK7Gm/redkar.png" alt="Dinas Pemadam Kebakaran" class="me-2 logo-img"> --}}
             <b>DAMKARMAT BANYUWANGI</b>
         </a>
         <!-- Sidebar Toggle -->

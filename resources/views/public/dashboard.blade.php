@@ -62,7 +62,8 @@
             style="width: 100%; margin-bottom: 50px; margin-top: -30px; position: relative; box-shadow: 0 9px 9px rgba(0, 0, 0, 0.1);">
             <p class="text-white m-0 my-1 py-1">
             <h2><a class="nav-link" {{-- href="https://wa.me/+6285748449996?text=LAPOR%20KEJADIAN!!!%0ASetelah%0Aberkomunikasi%0Avia%0Atelepon,%0Aharap%0Akirimkan%0Atitik%0Alokasi%0Akejadian."> --}}
-                    href="https://wa.me/+6282211312113?text=LAPOR%20KEJADIAN!!!%0ASetelah%0Aberkomunikasi%0Avia%0Atelepon,%0Aharap%0Akirimkan%0Atitik%0Alokasi%0Akejadian.">
+                href="https://wa.me/+6282211312113?text=LAPOR%20KEJADIAN!!!%0ASetelah%0Aberkomunikasi%0Avia%0Atelepon,%0Aharap%0Akirimkan%0Atitik%0Alokasi%0Akejadian.">
+                    {{-- href="https://wa.me/+6282233334113?text=LAPOR%20KEJADIAN!!!%0ASetelah%0Aberkomunikasi%0Avia%0Atelepon,%0Aharap%0Akirimkan%0Atitik%0Alokasi%0Akejadian."> --}}
                     <b> LAYANAN PELAPORAN!!! </b></a></h2>
             </p>
         </div>
@@ -199,20 +200,8 @@
             <div class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-
-                        {{-- <form action="{{ route('public.selectYear') }}" method="POST">
-                            @csrf
-                            <select name="year">
-                                @foreach ($years as $year)
-                                    <option value="{{ $year }}">{{ $year }}</option>
-                                @endforeach
-                            </select>
-                            <button type="submit">Select Year</button>
-                        </form> --}}
-
-
                         {{-- grafik --}}
-                        <form method="POST" action="{{ route('public.selectYear') }}" class="mb-3">
+                        {{-- <form method="POST" action="{{ route('public.selectYear') }}" class="mb-3">
                             @csrf
                             <div class="form-group">
                                 <label for="yearSelect">Pilih Data Penanganan Perbulan:</label>
@@ -225,7 +214,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </form>
+                        </form> --}}
 
                     </div>
 
@@ -245,80 +234,8 @@
 
 
 
-    {{-- //padahal tadi siang bisa --}}
+    {{-- //padahal tadi siang bisa berita --}}
     {{-- <script>
-        // Data berita dari database
-        var berita = @json($berita);
-
-        // Mengubah data berita menjadi format yang sesuai
-        var cards = berita.map(item => ({
-            imageUrl: `{{ asset('storage/images_berita') }}/${item.gambar}`,
-            title: item.judul,
-            description: item.isi, // Use the appropriate field for description
-            link: `{{ url('/berita_isi_public') }}/${item.id}`,
-        }));
-
-        // Fungsi untuk menampilkan card pada halaman tertentu
-        function displayCards(page) {
-            var startIndex = (page - 1) * 3;
-            var endIndex = Math.min(startIndex + 3, cards.length);
-
-            var cardContainer = document.getElementById('card-container');
-            cardContainer.innerHTML = '';
-
-            for (var i = startIndex; i < endIndex; i++) {
-                var cardData = cards[i];
-                var cardHtml = `
-                    <div class="col mb-2">
-                        <div class="card h-100 text-center">
-                            <div class="card-header bg-danger"></div>
-                            <a href="${cardData.link}"><img src="${cardData.imageUrl}" class="card-img-top" alt="${cardData.title}" /></a>
-                            <div class="card-body">
-                                <a href="${cardData.link}"><h5 class="card-title">${cardData.title}</h5></a>
-                                <p class="card-text">${cardData.description}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-primary" onclick="window.location.href = '${cardData.link}';">Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                cardContainer.innerHTML += cardHtml;
-            }
-        }
-
-        // Fungsi untuk menampilkan pagination
-        function displayPagination() {
-            var pagination = document.getElementById('pagination').querySelector('ul');
-            pagination.innerHTML = '';
-
-            var numPages = Math.ceil(cards.length / 3);
-            for (var i = 1; i <= numPages; i++) {
-                var listItem = document.createElement('li');
-                listItem.classList.add('page-item');
-
-                var link = document.createElement('a');
-                link.classList.add('page-link');
-                link.href = '#';
-                link.textContent = i;
-                link.onclick = function() {
-                    displayCards(parseInt(this.textContent));
-                    return false; // Prevent default behavior
-                };
-
-                listItem.appendChild(link);
-                pagination.appendChild(listItem);
-            }
-        }
-
-        // Display data when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            displayCards(1); // Show the first page
-            displayPagination(); // Show pagination
-        });
-    </script> --}}
-
-    <script>
         // Data berita dari database
 
         var berita = @json($berita ?? []);
@@ -390,11 +307,11 @@
             displayCards(1); // Tampilkan halaman pertama
             displayPagination(); // Tampilkan pagination
         });
-    </script>
+    </script> --}}
 
 
     {{-- //ini tampilan grafik kejadian bulanan --}}
-    <script>
+    {{-- <script>
         const labels = @json($labels);
         const kebakaranData = @json($kebakaranData);
         const penyelamatanData = @json($penyelamatanData);
@@ -493,5 +410,5 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 @endsection

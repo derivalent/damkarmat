@@ -19,10 +19,12 @@ class CreatePelaporanTable extends Migration
             $table->time('selesai'); // Waktu Selesai
             $table->string('lokasi')->nullable(); // Lokasi
             $table->string('pelapor')->nullable(); // Pelapor
+            $table->string('data_diri')->nullable(); // Data diri
             $table->string('pemilik')->nullable(); // Pemilik
             $table->text('penyebab')->nullable(); // Penyebab
             $table->text('kerugian')->nullable(); // Kerugian
             $table->text('korban')->nullable(); // Korban
+            $table->string('dokumentasi')->nullable(); //Dokumentasi
             $table->text('kendala')->nullable(); // Kendala
             $table->string('mobil_dinas')->nullable(); // Mobil Dinas
             $table->json('personil'); // Personil

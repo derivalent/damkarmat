@@ -259,6 +259,7 @@ class PelaporanController extends Controller
             'selesai' => 'required|date_format:H:i',
             'lokasi' => 'nullable|string|max:255',
             'pelapor' => 'nullable|string|max:255',
+            'data_diri' => 'nullable|string|max:255', // Validasi gambar data diri
             'pemilik' => 'nullable|string|max:255',
             'penyebab' => 'nullable|string',
             'kerugian' => 'nullable|string',
@@ -267,7 +268,8 @@ class PelaporanController extends Controller
             'mobil_dinas' => 'nullable|string|max:255',
             'personil' => 'required|array', // Pastikan personil diisi
             'dokumentasi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar dokumentasi
-            'data_diri' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar data diri
+            // 'data_diri' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
         ]);
 
         // Menyimpan data laporan
@@ -281,6 +283,7 @@ class PelaporanController extends Controller
             'selesai' => $request->selesai,
             'lokasi' => $request->lokasi,
             'pelapor' => $request->pelapor,
+            'data_diri' => $request->data_diri,
             'pemilik' => $request->pemilik,
             'penyebab' => $request->penyebab,
             'kerugian' => $request->kerugian,
@@ -297,12 +300,12 @@ class PelaporanController extends Controller
             $laporan->dokumentasi = $path;
         }
 
-        // Menyimpan gambar data diri
-        if ($request->hasFile('data_diri')) {
-            $file = $request->file('data_diri');
-            $path = $file->store('uploads/data_diri', 'public'); // Store in public/uploads/data_diri
-            $laporan->data_diri = $path;
-        }
+        // // Menyimpan gambar data diri
+        // if ($request->hasFile('data_diri')) {
+        //     $file = $request->file('data_diri');
+        //     $path = $file->store('uploads/data_diri', 'public'); // Store in public/uploads/data_diri
+        //     $laporan->data_diri = $path;
+        // }
 
         $laporan->save(); // Save changes to the database
 
@@ -352,6 +355,7 @@ class PelaporanController extends Controller
             'selesai' => 'required|date_format:H:i:s',
             'lokasi' => 'nullable|string|max:255',
             'pelapor' => 'nullable|string|max:255',
+            'data_diri' => 'nullable|string|max:255', // Validasi gambar data diri
             'pemilik' => 'nullable|string|max:255',
             'penyebab' => 'nullable|string',
             'kerugian' => 'nullable|string',
@@ -373,6 +377,7 @@ class PelaporanController extends Controller
             'selesai' => $request->selesai,
             'lokasi' => $request->lokasi,
             'pelapor' => $request->pelapor,
+            'data_diri' => $request->data_diri,
             'pemilik' => $request->pemilik,
             'penyebab' => $request->penyebab,
             'kerugian' => $request->kerugian,

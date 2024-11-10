@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'tanggal_lahir' => '2002-02-02',
             'pendidikan_terakhir' => 'S1 Teknologi Rekayasa Perangkat Lunak',
             'status_pekerjaan' => 'pns',
-            'role' => 'admin', // Role pengguna, misalnya admin atau user
+            'role' => '1', // Role pengguna, misalnya admin atau user
             'alamat' => 'Rogojampi, Banyuwangi',
         ]);
     }

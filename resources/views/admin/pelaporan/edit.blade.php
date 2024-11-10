@@ -249,6 +249,13 @@
                     </div>
 
                     <div class="form-group row mb-3">
+                    <label for="data_diri" class="col-sm-2 col-form-label">Data Diri (NIK) </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="data_diri" name="data_diri" value="{{ old('data_diri', $laporan->data_diri) }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
                         <label for="pemilik" class="col-sm-2 col-form-label">Pemilik</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="pemilik" name="pemilik" value="{{ old('pemilik', $laporan->pemilik) }}">
