@@ -28,12 +28,14 @@
 
 @media (max-width: 768px) {
     .navbar-brand .logo-img {
-        min-width: 110px;
+        min-width: 70px;
         /* Batasan minimum ukuran gambar untuk tablet dan handphone */
+        max-width: 75px;
     }
     .navbar-brand .logo-img-kab {
-        min-width: 110px;
+        min-width: 60px;
         /* Batasan minimum ukuran gambar untuk tablet dan handphone */
+        max-width: 63px;
     }
 }
 
@@ -57,6 +59,17 @@
         /* Jarak atas */
         font-size: 0.8rem;
         /* Ukuran teks untuk perangkat seluler */
+    }
+
+    .navbar-brand .logo-img {
+        min-width: 30px;
+        /* Batasan minimum ukuran gambar untuk tablet dan handphone */
+        max-width: 40px;
+    }
+    .navbar-brand .logo-img-kab {
+        min-width: 30px;
+        /* Batasan minimum ukuran gambar untuk tablet dan handphone */
+        max-width: 37px;
     }
 }
 

@@ -321,30 +321,9 @@ class PelaporanController extends Controller
         return view('admin.pelaporan.edit', compact('laporan', 'personnels', 'selectedPersonil'));
     }
 
-
-
     // Mengupdate laporan
     public function update(Request $request, $id)
     {
-        // Validasi input
-        // $request->validate([
-        //     'kejadian' => 'required|string|max:255',
-        //     'jenis_kejadian' => 'required|in:kebakaran,penyelamatan',
-        //     'hari_kejadian' => 'required|date',
-        //     'laporan_masuk' => 'required|date_format:H:i',
-        //     'berangkat' => 'required|date_format:H:i',
-        //     'tiba' => 'required|date_format:H:i',
-        //     'selesai' => 'required|date_format:H:i',
-        //     'lokasi' => 'nullable|string|max:255',
-        //     'pelapor' => 'nullable|string|max:255',
-        //     'pemilik' => 'nullable|string|max:255',
-        //     'penyebab' => 'nullable|string',
-        //     'kerugian' => 'nullable|string',
-        //     'korban' => 'nullable|string',
-        //     'kendala' => 'nullable|string',
-        //     'mobil_dinas' => 'nullable|string|max:255',
-        //     'personil' => 'required|array',
-        // ]);
         $request->validate([
             'kejadian' => 'required|string|max:255',
             'jenis_kejadian' => 'required|in:kebakaran,penyelamatan',
