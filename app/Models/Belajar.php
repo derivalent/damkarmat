@@ -12,7 +12,8 @@ class Belajar extends Model
     protected $table = 'belajar';
 
     protected $fillable = [
-        'audience',
+        'tamu', // Kolom tamu
+        'audience', // Kolom audience
         'hari',
         'jam',
         'status',

@@ -47,7 +47,7 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h2 class="mt-4"><b>Filter untuk Print Laporan</b></h2>
+            <h2 class="mt-4"><b>Filter untuk Print Laporan PDF</b></h2>
 
             <div class="card mb-4">
                 <div class="card-body">
@@ -88,7 +88,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-danger">Print PDF</button>
-                        <a href="#" class="btn btn-primary">Print Exel</a>
+                        {{-- <a href="#" class="btn btn-primary">Print Exel</a> --}}
                         <a href="{{ route('Pelaporan.index') }}" class="btn btn-secondary">Cancel</a>
                     </form>
                 </div>

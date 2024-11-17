@@ -10,24 +10,28 @@ class CreatePelaporanTable extends Migration
     {
         Schema::create('pelaporan', function (Blueprint $table) {
             $table->id();
-            $table->string('kejadian'); // Kejadian
-            $table->enum('jenis_kejadian', ['kebakaran', 'penyelamatan']); // Jenis Kejadian
-            $table->date('hari_kejadian'); // Hari Kejadian
-            $table->time('laporan_masuk'); // Waktu Laporan Masuk
-            $table->time('berangkat'); // Waktu Berangkat
-            $table->time('tiba'); // Waktu Tiba
-            $table->time('selesai'); // Waktu Selesai
-            $table->string('lokasi')->nullable(); // Lokasi
-            $table->string('pelapor')->nullable(); // Pelapor
-            $table->string('data_diri')->nullable(); // Data diri
-            $table->string('pemilik')->nullable(); // Pemilik
-            $table->text('penyebab')->nullable(); // Penyebab
-            $table->text('kerugian')->nullable(); // Kerugian
-            $table->text('korban')->nullable(); // Korban
-            $table->string('dokumentasi')->nullable(); //Dokumentasi
-            $table->text('kendala')->nullable(); // Kendala
-            $table->string('mobil_dinas')->nullable(); // Mobil Dinas
-            $table->json('personil'); // Personil
+            $table->string('objek_kejadian');
+            $table->enum('jenis_kejadian', ['kebakaran', 'non-kebakaran']);
+            $table->date('hari_kejadian');
+            $table->time('laporan_masuk');
+            $table->time('berangkat');
+            $table->time('tiba');
+            $table->time('penanganan');
+            $table->time('respon_time')->nullable();
+            $table->string('lokasi')->nullable();
+            $table->string('pelapor')->nullable();
+            $table->string('NIK')->nullable();
+            $table->enum('jenis_kelamin', ['laki-laki', 'wanita'])->nullable();
+            $table->string('pemilik')->nullable();
+            $table->text('penyebab')->nullable();
+            $table->text('kerugian')->nullable();
+            $table->text('meninggal')->nullable();
+            $table->text('luka_berat')->nullable();
+            $table->text('luka_ringan')->nullable();
+            $table->string('dokumentasi')->nullable();
+            $table->text('kendala')->nullable();
+            $table->string('mobil_dinas')->nullable();
+            $table->json('personil');
             $table->timestamps();
         });
     }
@@ -37,3 +41,4 @@ class CreatePelaporanTable extends Migration
         Schema::dropIfExists('pelaporan');
     }
 }
+

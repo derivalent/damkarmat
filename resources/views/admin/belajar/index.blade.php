@@ -32,7 +32,8 @@
                     <table class="table table-striped table-bordered" id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>No</th>
+                                <th>Tamu</th>
                                 <th>Audience</th>
                                 <th>Hari</th>
                                 <th>Jam</th>
@@ -44,6 +45,7 @@
                             @foreach ($belajars as $belajar)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $belajar->tamu }}</td>
                                     <td>{{ $belajar->audience }}</td>
                                     <td>{{ $belajar->hari }}</td>
                                     <td>{{ $belajar->jam }}</td>

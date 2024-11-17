@@ -12,22 +12,28 @@ class Pelaporan extends Model
     protected $table = 'pelaporan';
 
     protected $fillable = [
-        'kejadian',
+        'objek_kejadian',
         'jenis_kejadian',
         'hari_kejadian',
         'laporan_masuk',
         'berangkat',
         'tiba',
-        'selesai',
+        'penanganan',
+        'respon_time',
         'lokasi',
         'pelapor',
+        'NIK',
+        'jenis_kelamin',
         'pemilik',
         'penyebab',
         'kerugian',
-        'korban',
+        'meninggal',
+        'luka_berat',
+        'luka_ringan',
+        'dokumentasi',
         'kendala',
         'mobil_dinas',
-        'personil',
+        'personil'
     ];
 
     public function personnels()

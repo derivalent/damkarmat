@@ -21,7 +21,8 @@ class BelajarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'audience' => 'required|string|max:255',
+            'tamu' => 'required|string|max:255',
+            'audience' => 'required|integer|min:0',
             'hari' => 'required|date',
             'jam' => 'required|date_format:H:i',
             'status' => 'required|in:terjadwal,selesai',
@@ -43,7 +44,8 @@ class BelajarController extends Controller
     {
         // Validasi input dari pengguna
         $request->validate([
-            'audience' => 'required|string|max:255',
+            'tamu' => 'required|string|max:255',
+            'audience' => 'required|integer|min:0',
             'hari' => 'required|date',
             'jam' => 'required|date_format:H:i:s',
             'status' => 'required|in:terjadwal,selesai',
@@ -53,6 +55,7 @@ class BelajarController extends Controller
         $belajar = Belajar::findOrFail($id);
 
         // Memperbarui data dengan data yang diterima
+        $belajar->tamu = $request->tamu;
         $belajar->audience = $request->audience;
         $belajar->hari = $request->hari;
         $belajar->jam = $request->jam;

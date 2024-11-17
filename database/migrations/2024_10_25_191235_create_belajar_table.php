@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('belajar', function (Blueprint $table) {
             $table->id();
-            $table->string('audience');
+            $table->string('tamu'); // Kolom tamu ditambahkan sebelum audience
+            $table->integer('audience'); // Ubah tipe data audience menjadi integer
             $table->date('hari');
             $table->time('jam');
             $table->enum('status', ['terjadwal', 'selesai']);

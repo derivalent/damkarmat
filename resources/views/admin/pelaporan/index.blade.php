@@ -79,11 +79,37 @@
                                     </a>
                                 </div> --}}
 
-                                    <div class="me-2 mb-2">
+                                    {{-- <div class="me-2 mb-2">
                                         <a href="{{ route('Pelaporan.filterPrint') }}" class="btn btn-secondary btn-sm">
                                             <i class="fas fa-print"></i> Print
                                         </a>
+                                    </div> --}}
+
+                                    <div class="dropdown me-2 mb-2">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                            id="printDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-print"></i> Print
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="printDropdown">
+                                            <li>
+                                                {{-- <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint', ['type' => 'pdf']) }}">
+                                                    Print PDF
+                                                </a> --}}
+                                                <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint') }}">
+                                                    Print PDF
+                                                </a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint', ['type' => 'excel']) }}">
+                                                    Print Excel
+                                                </a> --}}
+                                                <a class="dropdown-item" href="#">
+                                                    Print Excel
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
+
 
                                     <!-- Tombol Tambah Laporan -->
                                     <a class="btn btn-success btn-sm mb-2" href="{{ route('Pelaporan.create') }}">
@@ -264,6 +290,24 @@
                                                             <div class="row mb-2">
                                                                 <div class="col-4">
                                                                     <span class="detail-label"
+                                                                        style="font-weight: bold;">Data Diri (NIK
+                                                                        Pelapor)</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    {{-- @if ($laporan->data_diri)
+                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}"
+                                                                        alt="Data Diri" class="img-fluid"
+                                                                        style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
+                                                                @endif --}}
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $laporan->data_diri }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
                                                                         style="font-weight: bold;">Pemilik</span>
                                                                 </div>
                                                                 <div class="col-8">
@@ -355,23 +399,7 @@
                                                             </div>
 
                                                             <!-- Display Data Diri Image -->
-                                                            <div class="row mb-2">
-                                                                <div class="col-4">
-                                                                    <span class="detail-label"
-                                                                        style="font-weight: bold;">Data Diri</span>
-                                                                </div>
-                                                                <div class="col-8">
-                                                                    {{-- @if ($laporan->data_diri)
-                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}"
-                                                                        alt="Data Diri" class="img-fluid"
-                                                                        style="max-height: 200px; width: auto;">
-                                                                @else
-                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
-                                                                @endif --}}
-                                                                    <span class="detail-value">:
-                                                                        &nbsp;{{ $laporan->data_diri }}</span>
-                                                                </div>
-                                                            </div>
+
 
                                                             <!-- Add more detail items as needed -->
                                                         </div>
@@ -463,15 +491,33 @@
 
                                     <!-- Tombol Print -->
                                     {{-- <div class="me-2 mb-2">
-                                    <a href="{{ route('Pelaporan.print', ['month' => request('month'), 'year' => request('year')]) }}" class="btn btn-secondary btn-sm">
-                                        <i class="fas fa-print"></i> Print
-                                    </a>
-                                </div> --}}
-
-                                    <div class="me-2 mb-2">
                                         <a href="{{ route('Pelaporan.filterPrint') }}" class="btn btn-secondary btn-sm">
                                             <i class="fas fa-print"></i> Print
                                         </a>
+                                    </div> --}}
+                                    <div class="dropdown me-2 mb-2">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                            id="printDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-print"></i> Print
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="printDropdown">
+                                            <li>
+                                                {{-- <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint', ['type' => 'pdf']) }}">
+                                                    Print PDF
+                                                </a> --}}
+                                                <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint') }}">
+                                                    Print PDF
+                                                </a>
+                                            </li>
+                                            <li>
+                                                {{-- <a class="dropdown-item" href="{{ route('Pelaporan.filterPrint', ['type' => 'excel']) }}">
+                                                    Print Excel
+                                                </a> --}}
+                                                <a class="dropdown-item" href="#">
+                                                    Print Excel
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
 
                                     <!-- Tombol Tambah Laporan -->
@@ -649,6 +695,25 @@
                                                             <div class="row mb-2">
                                                                 <div class="col-4">
                                                                     <span class="detail-label"
+                                                                        style="font-weight: bold;">Data Diri (NIK
+                                                                        Pelapor)</span>
+                                                                </div>
+                                                                <div class="col-8">
+                                                                    {{-- @if ($laporan->data_diri)
+                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}"
+                                                                        alt="Data Diri" class="img-fluid"
+                                                                        style="max-height: 200px; width: auto;">
+                                                                @else
+                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
+                                                                @endif --}}
+                                                                    <span class="detail-value">:
+                                                                        &nbsp;{{ $laporan->data_diri }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-2">
+                                                                <div class="col-4">
+                                                                    <span class="detail-label"
                                                                         style="font-weight: bold;">Pemilik</span>
                                                                 </div>
                                                                 <div class="col-8">
@@ -740,23 +805,6 @@
                                                             </div>
 
                                                             <!-- Display Data Diri Image -->
-                                                            <div class="row mb-2">
-                                                                <div class="col-4">
-                                                                    <span class="detail-label"
-                                                                        style="font-weight: bold;">Data Diri</span>
-                                                                </div>
-                                                                <div class="col-8">
-                                                                    {{-- @if ($laporan->data_diri)
-                                                                    <img src="{{ asset('storage/' . $laporan->data_diri) }}"
-                                                                        alt="Data Diri" class="img-fluid"
-                                                                        style="max-height: 200px; width: auto;">
-                                                                @else
-                                                                    <span class="detail-value">: &nbsp;Tidak ada data diri tersedia</span>
-                                                                @endif --}}
-                                                                    <span class="detail-value">:
-                                                                        &nbsp;{{ $laporan->data_diri }}</span>
-                                                                </div>
-                                                            </div>
 
                                                             <!-- Add more detail items as needed -->
                                                         </div>
